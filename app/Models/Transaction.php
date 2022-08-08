@@ -18,6 +18,11 @@ class Transaction extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function user_sent()
+    {
+        return $this->belongsTo(User::class, 'user_id_sent');
+    }
+
     public function avatar()
     {
         return $this->belongsTo(Avatar::class);
