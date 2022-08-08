@@ -12,4 +12,9 @@ class Hobby extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function headerHobbies()
+    {
+        return $this->hasMany(HeaderHobby::class);
+    }
 }

@@ -12,4 +12,14 @@ class HeaderHobby extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function hobby()
+    {
+        return $this->belongsTo(Hobby::class);
+    }
 }

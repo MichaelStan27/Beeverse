@@ -12,4 +12,14 @@ class Avatar extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function collections()
+    {
+        return $this->hasMany(Collection::class);
+    }
 }
