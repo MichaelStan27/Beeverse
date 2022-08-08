@@ -15,8 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('hobby_id')->constrained();
-            $table->foreignId('avatar_id')->constrained();
+            $table->string('ig_username');
             $table->string('name');
             $table->string('photo_profile');
             $table->string('gender');
