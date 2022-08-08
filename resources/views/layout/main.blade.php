@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    @include('partials.notification-card')
     @include('partials.navbar')
     @yield('content')
 </body>
