@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->integer('balance');
             $table->boolean('hidden');
             $table->string('password');
+            $table->boolean('is_paying');
             $table->rememberToken();
             $table->timestamps();
         });
