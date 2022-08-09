@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hobby;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,6 +14,9 @@ class DashboardController extends Controller
         if ($user && !$user->is_paying) {
             return redirect()->route('payment', $user)->with('feeAmount', random_int(100000, 125000));
         }
-        return view('dashboard');
+        return view('dashboard', [
+            'hobbies' => Hobby::all(),
+            'users' => User::with(['headerHobbies', 'headerHobbies.hobby'])->paginate(5),
+        ]);
     }
 }
