@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(ShopController::class)->group(function () {
         Route::get('/shop', 'index')->name('shop');
+        Route::post('/shop/{avatar}', 'checkBuy')->name('check');
+        Route::get('/{avatar}/buy', 'viewBuy')->name('buy_avatar');
     });
 });
 

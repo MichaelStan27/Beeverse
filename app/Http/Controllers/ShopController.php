@@ -13,4 +13,16 @@ class ShopController extends Controller
             'avatars' => Avatar::where('id', '<>', 1)->paginate(12)
         ]);
     }
+
+    public function checkBuy(Avatar $avatar)
+    {
+        return redirect()->back()->with('check', $avatar->image);
+    }
+
+    public function viewBuy(Avatar $avatar)
+    {
+        return view("buy-avatar", [
+            'avatar' => $avatar
+        ]);
+    }
 }
