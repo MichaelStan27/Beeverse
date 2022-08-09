@@ -37,15 +37,17 @@ Route::middleware('auth')->group(function () {
         Route::post('/logout', 'logout')->name('logout');
     });
 
-    Route::controller(ShopController::class)->group(function () {
-        Route::get('/shop', 'index')->name('shop');
-        Route::post('/shop/{avatar}', 'checkBuy')->name('check');
-        Route::post('/shop/{avatar}/confirm', 'confirmBuy')->name('confirm');
-        Route::get('/shop/{avatar}/checksend', 'checkSend')->name('check_send');
-        Route::post('/buy/{user}', 'buy')->name('buy_avatar');
-        Route::get('/buy', 'viewError');
-        Route::post('/send/{user}', 'send')->name('send_avatar');
-        Route::get('/send/{user}', 'viewError');
+    Route::group(['middleware' => 'can:see'], function () {
+        Route::controller(ShopController::class)->group(function () {
+            Route::get('/shop', 'index')->name('shop');
+            Route::post('/shop/{avatar}', 'checkBuy')->name('check');
+            Route::post('/shop/{avatar}/confirm', 'confirmBuy')->name('confirm');
+            Route::get('/shop/{avatar}/checksend', 'checkSend')->name('check_send');
+            Route::post('/buy/{user}', 'buy')->name('buy_avatar');
+            Route::get('/buy', 'viewError');
+            Route::post('/send/{user}', 'send')->name('send_avatar');
+            Route::get('/send/{user}', 'viewError');
+        });
     });
 });
 

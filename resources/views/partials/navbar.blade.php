@@ -22,16 +22,25 @@
                                 {{ auth()->user()->name }}
                             </a>
                             <ul class="dropdown-menu py-0">
+                                @can('see', auth()->user())
+                                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                                @endcan
                                 <form action="{{ route('logout') }}" method="post">
                                     @csrf
-                                    <button type="submit" class="btn w-100">Log out</button>
+                                    <li>
+                                        <button type="submit" class="dropdown-item">
+                                            Log out
+                                        </button>
+                                    </li>
                                 </form>
                             </ul>
                         </li>
                         @if (!Route::is('shop'))
                             <li class="nav-item position-absolute" style="right: 18rem">
-                                <a class="nav-link active" aria-current="page" href="{{ route('shop') }}"><i
-                                        class="fa-solid fa-store fa-xl">SHOP</i></a>
+                                @can('see', auth()->user())
+                                    <a class="nav-link active" aria-current="page" href="{{ route('shop') }}"><i
+                                            class="fa-solid fa-store fa-xl">SHOP</i></a>
+                                @endcan
                             </li>
                         @endif
                     </ul>
