@@ -40,7 +40,7 @@
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-dark">Pay</button>
+                <button type="submit" class="btn btn-dark px-5 mt-3">Pay</button>
             </form>
         </div>
     @else
