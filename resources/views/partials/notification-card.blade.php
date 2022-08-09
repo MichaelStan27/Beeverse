@@ -71,7 +71,7 @@
                     <button type="submit" class="btn btn-outline-light w-100 mb-2" id="buyBtn"
                         @if ($collections->contains('avatar_id', $avatar->id)) disabled @endif>Buy</button>
                 </form>
-                <a href="{{ route('send_avatar', $avatar) }}" class="btn btn-outline-light w-100 mb-2"
+                <a href="{{ route('check_send', $avatar) }}" class="btn btn-outline-light w-100 mb-2"
                     id="sendBtn">Send</a>
             </div>
         </div>
@@ -79,6 +79,7 @@
 @elseif (Session::has('confirm'))
     @php
         $avatar = Session::get('confirm');
+        $auth_user = auth()->user();
     @endphp
     <div class="w-25">
         <div class="card text-bg-dark"
@@ -101,26 +102,87 @@
                 <p class="card-text text-center">Are you sure you want to buy this avatar for
                     {{ $avatar->price_format }}?</p>
                 <p class="card-text text-center">(Your balance is:
-                    @if (auth()->user()->balance > $avatar->price)
-                        <span class="text-success fw-bold"> {{ auth()->user()->balance_format }}</span>
+                    @if ($auth_user->balance >= $avatar->price)
+                        <span class="text-success fw-bold"> {{ $auth_user->balance_format }}</span>
                     @else
-                        <span class="text-danger fw-bold"> {{ auth()->user()->balance_format }}</span>
+                        <span class="text-danger fw-bold"> {{ $auth_user->balance_format }}</span>
                     @endif
                     )
                 </p>
                 <div class="text-center d-flex align-items-center justify-content-center mb-4">
                     <img src="{{ asset('assets/avatars') }}/{{ $avatar->image }}" style="width: 8rem;">
                 </div>
-                <form action="{{ route('buy_avatar', auth()->user()) }}" method="post">
+                <form action="{{ route('buy_avatar', $auth_user) }}" method="post">
                     @csrf
                     <input type="hidden" name="avatar_id" value="{{ $avatar->id }}">
                     <input type="hidden" name="avatar_price" value="{{ $avatar->price }}">
                     <input type="hidden" name="avatar_name" value="{{ $avatar->name }}">
-                    <input type="hidden" name="new_balance" value="{{ auth()->user()->balance - $avatar->price }}">
+                    <input type="hidden" name="new_balance" value="{{ $auth_user->balance - $avatar->price }}">
                     <button type="submit" class="btn btn-outline-light w-100 mb-2" id="buyBtn"
-                        @if (auth()->user()->balance < $avatar->price) disabled @endif>Yes</button>
+                        @if ($auth_user->balance < $avatar->price) disabled @endif>Yes</button>
                 </form>
                 <a href="#" class="btn btn-outline-light w-100 mb-2" id="sendBtn">No</a>
+            </div>
+        </div>
+    </div>
+@elseif(Session::has('checkSend'))
+    @php
+        $avatar = Session::get('checkSend');
+        $auth_user = auth()->user();
+    @endphp
+    <div class="w-25">
+        <div class="card text-bg-dark"
+            style="
+        width: 30rem;
+        position: fixed;
+        left: 50%;
+        top: 15%;
+        z-index: 1000 !important;
+        transform: translateX(-50%);
+        "
+            id="buySend-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-end">
+                    <a href="#" class="text-light" id="xBtn">
+                        <i class="fa-solid fa-x"></i>
+                    </a>
+                </div>
+                <form action="{{ route('send_avatar', $auth_user) }}" method="post">
+                    @csrf
+                    <h5 class="card-title text-light fw-bold w-100 text-center fs-3">Send</h5>
+                    <p class="card-text text-center">{{ $avatar->price_format }}</p>
+                    @if ($auth_user->balance >= $avatar->price)
+                        <p class="card-text text-center">Who do you want to send this avatar for?</p>
+                        <select class="form-select mb-4" aria-label="Select User" name="sended_user">
+                            <option selected disabled>Select Users</option>
+                            @foreach ($users as $user)
+                                @if ($user->collections->contains('avatar_id', $avatar->id))
+                                    @continue
+                                @endif
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endforeach
+                        </select>
+                    @else
+                        <p class="card-text text-center text-danger fw-bold">Insufficient Balance</p>
+                    @endif
+                    <p class="card-text text-center">(Your balance is:
+                        @if ($auth_user->balance > $avatar->price)
+                            <span class="text-success fw-bold"> {{ $auth_user->balance_format }}</span>
+                        @else
+                            <span class="text-danger fw-bold"> {{ $auth_user->balance_format }}</span>
+                        @endif
+                        )
+                    </p>
+                    <div class="text-center d-flex align-items-center justify-content-center mb-4">
+                        <img src="{{ asset('assets/avatars') }}/{{ $avatar->image }}" style="width: 8rem;">
+                    </div>
+                    <input type="hidden" name="avatar_id" value="{{ $avatar->id }}">
+                    <input type="hidden" name="avatar_price" value="{{ $avatar->price }}">
+                    <input type="hidden" name="avatar_name" value="{{ $avatar->name }}">
+                    <input type="hidden" name="new_balance" value="{{ $auth_user->balance - $avatar->price }}">
+                    <button type="submit" class="btn btn-outline-light w-100 mb-2" id="sendBtn"
+                        @if ($auth_user->balance < $avatar->price) disabled @endif>Send</button>
+                </form>
             </div>
         </div>
     </div>
