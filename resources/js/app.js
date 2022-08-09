@@ -38,7 +38,5 @@ if (buySendCard) {
     };
     sendBtn.onclick = function (){
         buySendCard.style.opacity = 0;
-        inputFee.style.borderColor = "red";
-        errorFeeMsg.style.display = "block";
     };
 }
