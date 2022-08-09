@@ -1,5 +1,5 @@
 @if (Session::has('amount'))
-    <div class="fixed-top mx-auto w-25 mt-5">
+    <div class="fixed-top w-25 mt-5" style="margin-left: 41rem">
         <div class="card" style="width: 18rem;" id="confirmation-card">
             <div class="card-body">
                 <h5 class="card-title text-danger fw-bold w-100 text-center">Error Message</h5>
@@ -18,12 +18,21 @@
         </div>
     </div>
 @elseif (Session::has('amount_underpaid'))
-    <div class="fixed-top mx-auto w-25 mt-5">
+    <div class="fixed-top w-25 mt-5" style="margin-left: 41rem">
         <div class="card" style="width: 18rem;" id="error-card">
             <div class="card-body">
                 <h5 class="card-title text-danger fw-bold w-100 text-center">Error Message</h5>
                 <h6 class="card-subtitle mb-2 text-muted text-center">Sorry you are underpaid IDR
                     {{ number_format(session('amount_underpaid')) }}
+                </h6>
+            </div>
+        </div>
+    </div>
+@elseif (Session::has('message'))
+    <div class="fixed-top w-25 mt-5" style="margin-left: 41rem">
+        <div class="card" style="width: 18rem;" id="error-card">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted text-center mt-2">{{ session('message') }}
                 </h6>
             </div>
         </div>
