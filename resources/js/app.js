@@ -13,10 +13,10 @@ const noBtn = document.querySelector("#noBtn") ?? false;
 
 if (popup) {
     yesBtn.onclick = function (){
-        popup.style.opacity = 0;
+        popup.style.display = "none";
     };
     noBtn.onclick = function (){
-        popup.style.opacity = 0;
+        popup.style.display = "none";
         inputFee.style.borderColor = "red";
         errorFeeMsg.style.display = "block";
     };
@@ -31,12 +31,12 @@ if (notifCard) {
 
 if (buySendCard) {
     xBtn.onclick = function (){
-        buySendCard.style.opacity = 0;
+        buySendCard.style.display = "none";
     }
     buyBtn.onclick = function (){
-        buySendCard.style.opacity = 0;
+        buySendCard.style.display = "none";
     };
     sendBtn.onclick = function (){
-        buySendCard.style.opacity = 0;
+        buySendCard.style.display = "none";
     };
 }
