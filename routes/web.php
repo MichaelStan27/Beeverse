@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/{user}/payment', 'checkPayment');
         Route::post('/{user}/convert', 'convert')->name('convert');
         Route::post('/logout', 'logout')->name('logout');
+    });
+
+    Route::controller(ShopController::class)->group(function () {
+        Route::get('/shop', 'index')->name('shop');
     });
 });
 

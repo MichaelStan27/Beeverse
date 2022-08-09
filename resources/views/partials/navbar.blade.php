@@ -10,22 +10,31 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <form class="d-flex ms-4" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                        style="width: 45rem; margin-left: 5rem">
+                    <button class="btn btn-outline-dark" type="submit">Search</button>
                 </form>
                 @auth
-                    <li class="nav-item dropdown position-absolute fw-bold" style="right: 6rem">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            {{ auth()->user()->name }}
-                        </a>
-                        <ul class="dropdown-menu py-0">
-                            <form action="{{ route('logout') }}" method="post">
-                                @csrf
-                                <button type="submit" class="btn w-100">Log out</button>
-                            </form>
-                        </ul>
-                    </li>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown position-absolute fw-bold" style="right: 6rem">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                {{ auth()->user()->name }}
+                            </a>
+                            <ul class="dropdown-menu py-0">
+                                <form action="{{ route('logout') }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn w-100">Log out</button>
+                                </form>
+                            </ul>
+                        </li>
+                        @if (!Route::is('shop'))
+                            <li class="nav-item position-absolute" style="right: 18rem">
+                                <a class="nav-link active" aria-current="page" href="{{ route('shop') }}"><i
+                                        class="fa-solid fa-store fa-xl">SHOP</i></a>
+                            </li>
+                        @endif
+                    </ul>
                 @endauth
 
                 @guest
