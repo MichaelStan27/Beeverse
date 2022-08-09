@@ -69,6 +69,42 @@ class AvatarSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
+            [
+                'image' => 'anaconda.png',
+                'price' => 30000,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'image' => 'cat.png',
+                'price' => 52000,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'image' => 'duck.png',
+                'price' => 1000,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'image' => 'horse.png',
+                'price' => 5000,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'image' => 'rabbit.png',
+                'price' => 10000,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'image' => 'snail.png',
+                'price' => 25000,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
         ]);
     }
 }

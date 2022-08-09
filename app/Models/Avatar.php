@@ -22,4 +22,14 @@ class Avatar extends Model
     {
         return $this->hasMany(Collection::class);
     }
+
+    public function getNameAttribute()
+    {
+        return strtok($this->image, '.');
+    }
+
+    public function getPriceFormatAttribute()
+    {
+        return 'IDR ' . number_format($this->attributes['price']);
+    }
 }
