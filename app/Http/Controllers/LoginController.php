@@ -45,7 +45,7 @@ class LoginController extends Controller
     public function convert(Request $request, User $user)
     {
         $user->update([
-            'balance' => $request->converted,
+            'balance' => $request->converted + 100,
             'is_paying' => true
         ]);
 
