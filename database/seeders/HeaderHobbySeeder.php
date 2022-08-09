@@ -51,6 +51,74 @@ class HeaderHobbySeeder extends Seeder
                 'user_id' => 3,
                 'hobby_id' => 5,
             ],
+            [
+                'user_id' => 4,
+                'hobby_id' => 4,
+            ],
+            [
+                'user_id' => 4,
+                'hobby_id' => 1,
+            ],
+            [
+                'user_id' => 4,
+                'hobby_id' => 2,
+            ],
+            [
+                'user_id' => 5,
+                'hobby_id' => 5,
+            ],
+            [
+                'user_id' => 5,
+                'hobby_id' => 3,
+            ],
+            [
+                'user_id' => 5,
+                'hobby_id' => 1,
+            ],
+            [
+                'user_id' => 5,
+                'hobby_id' => 2,
+            ],
+            [
+                'user_id' => 6,
+                'hobby_id' => 1,
+            ],
+            [
+                'user_id' => 6,
+                'hobby_id' => 3,
+            ],
+            [
+                'user_id' => 6,
+                'hobby_id' => 2,
+            ],
+            [
+                'user_id' => 6,
+                'hobby_id' => 4,
+            ],
+            [
+                'user_id' => 7,
+                'hobby_id' => 1,
+            ],
+            [
+                'user_id' => 7,
+                'hobby_id' => 4,
+            ],
+            [
+                'user_id' => 7,
+                'hobby_id' => 5,
+            ],
+            [
+                'user_id' => 8,
+                'hobby_id' => 2,
+            ],
+            [
+                'user_id' => 8,
+                'hobby_id' => 3,
+            ],
+            [
+                'user_id' => 8,
+                'hobby_id' => 4,
+            ],
         ]);
     }
 }
