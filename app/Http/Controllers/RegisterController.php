@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
-use Ramsey\Uuid\Type\Integer;
 
 class RegisterController extends Controller
 {
@@ -68,43 +67,5 @@ class RegisterController extends Controller
         Auth::attempt($request->only('email', 'password'));
 
         return redirect()->route('payment', $user)->with('feeAmount', $request->feeAmount);
-    }
-
-    public function viewPayment(User $user)
-    {
-        return view('payment', [
-            'user' => $user,
-        ]);
-    }
-
-    public function checkPayment(Request $request, User $user)
-    {
-        $request->validate([
-            'fee' => ['required', 'numeric', 'gt:0'],
-        ]);
-
-        if ($request->fee > $request->feeAmount) {
-            $amount = $request->fee - $request->feeAmount;
-            return redirect()->back()->with('amount', $amount)->with('feeAmount', $request->feeAmount);
-        } else if ($request->fee < $request->feeAmount) {
-            $amount = $request->feeAmount - $request->fee;
-            return redirect()->back()->with('amount_underpaid', $amount)->with('feeAmount', $request->feeAmount);
-        }
-
-        $user->update([
-            'is_paying' => true
-        ]);
-
-        return redirect()->route('dashboard')->with('message', 'Payment Success');
-    }
-
-    public function convert(Request $request, User $user)
-    {
-        $user->update([
-            'balance' => $request->converted,
-            'is_paying' => true
-        ]);
-
-        return redirect()->route('dashboard')->with('message', 'Payment Success');
     }
 }
