@@ -13,8 +13,8 @@
 @section('title', 'payment')
 
 @section('content')
-    <div class="w-75 flex justify-content-center mx-auto my-5 border shadow-sm rounded-4 p-5">
-        @if (!$user->is_paying)
+    @if (!$user->is_paying)
+        <div class="w-75 flex justify-content-center mx-auto my-5 border shadow-sm rounded-4 p-5">
             <h1 class="mb-4 fw-bold">Payment</h1>
             <form action="{{ route('payment', $user) }}" method="post">
                 @csrf
@@ -42,6 +42,10 @@
                 </div>
                 <button type="submit" class="btn btn-dark">Pay</button>
             </form>
-        @endif
-    </div>
+        </div>
+    @else
+        <div class="w-75 flex justify-content-center mx-auto my-5 p-5">
+            <h1 class="mb-4 fw-bold text-center">UNAUTHORIZED</h1>
+        </div>
+    @endif
 @endsection
