@@ -9,14 +9,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <form class="d-flex ms-4" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                        style="width: 45rem; margin-left: 5rem">
-                    <button class="btn btn-outline-dark" type="submit">Search</button>
-                </form>
                 @auth
                     <ul class="navbar-nav">
-                        <li class="nav-item dropdown position-absolute fw-bold" style="right: 6rem">
+                        <li class="nav-item dropdown position-absolute fw-bold" style="right: 6rem; top: 2rem;">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 {{ auth()->user()->name }}
@@ -61,7 +56,7 @@
                             </ul>
                         </li>
                         @if (!Route::is('shop'))
-                            <li class="nav-item position-absolute" style="right: 18rem">
+                            <li class="nav-item position-absolute" style="right: 18rem; top: 2rem;">
                                 @can('see', auth()->user())
                                     <a class="nav-link active" aria-current="page" href="{{ route('shop') }}"><i
                                             class="fa-solid fa-store fa-xl">SHOP</i></a>

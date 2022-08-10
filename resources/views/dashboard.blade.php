@@ -6,10 +6,10 @@
     <div class="flex justify-content-center mx-auto" style="padding: 3rem">
         <div class="">
             <div class="row">
-                <div class="col">
+                <div class="col-3">
                     @include('partials.filter-card')
                 </div>
-                <div class="col-10 px-4">
+                <div class="col-9 px-4">
                     @foreach ($users as $user)
                         @auth
                             @if ($user->id == auth()->user()->id)
