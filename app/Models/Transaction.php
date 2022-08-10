@@ -27,4 +27,11 @@ class Transaction extends Model
     {
         return $this->belongsTo(Avatar::class);
     }
+
+    public function getDateAttribute()
+    {
+        $date = $this->created_at;
+
+        return $date->format('M d, Y');
+    }
 }

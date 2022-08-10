@@ -50,6 +50,11 @@ class User extends Authenticatable
         return $this->hasMany(Transaction::class);
     }
 
+    public function receives()
+    {
+        return $this->hasMany(Transaction::class, 'user_id_sent');
+    }
+
     public function headerHobbies()
     {
         return $this->hasMany(HeaderHobby::class);

@@ -22,4 +22,11 @@ class Collection extends Model
     {
         return $this->belongsTo(Avatar::class);
     }
+
+    public function getCollectedDateAttribute()
+    {
+        $date = $this->created_at;
+
+        return $date->format('M d, Y');
+    }
 }
