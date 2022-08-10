@@ -49,6 +49,10 @@ Route::middleware('auth')->group(function () {
             Route::post('/send/{user}', 'send')->name('send_avatar');
             Route::get('/send/{user}', 'viewError');
         });
+        Route::controller(ProfileController::class)->group(function () {
+            Route::post('/topup/{user}', 'topup')->name('topup');
+            Route::get('/topup/{user}', 'viewError');
+        });
     });
 });
 
@@ -57,5 +61,5 @@ Route::controller(DashboardController::class)->group(function () {
 });
 
 Route::controller(ProfileController::class)->group(function () {
-    Route::get('/{user}/profile', 'index')->name('profile')->middleware('can:see');
+    Route::get('/{user}/profile', 'index')->name('profile');
 });
