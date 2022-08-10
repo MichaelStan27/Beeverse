@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             ChatSeeder::class,
             WishlistSeeder::class,
             HeaderHobbySeeder::class,
+            TransactionSeeder::class,
         ]);
     }
 }
