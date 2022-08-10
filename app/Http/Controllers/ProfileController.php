@@ -76,4 +76,17 @@ class ProfileController extends Controller
 
         return redirect()->back()->with('message', 'your account visibility is set to visible')->with('visibleSess', 'vis');
     }
+
+    public function chooseAvatar(User $user)
+    {
+        return redirect()->back()->with('choose_visible', 'confirmation')->with('chooseSess', 'choose');
+    }
+
+    public function changeAvatar(Request $request, User $user)
+    {
+        $user->update([
+            'photo_profile' => $request->profile,
+        ]);
+        return redirect()->back()->with('message', 'photo profile successfully changed');
+    }
 }

@@ -62,6 +62,10 @@ Route::middleware('auth')->group(function () {
             Route::get('/visible/{user}/choose', 'viewError')->name('choose_visible');
             Route::post('/visible/{user}', 'makeVisible')->name('make_visible');
             Route::get('/visible/{user}', 'viewError');
+            Route::post('/choose/{user}', 'chooseAvatar')->name('choose_avatar');
+            Route::get('/choose/{user}', 'viewError');
+            Route::post('/change/{user}', 'changeAvatar')->name('change_avatar');
+            Route::get('/change/{user}', 'viewError');
         });
     });
 });

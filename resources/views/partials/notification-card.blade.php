@@ -309,7 +309,12 @@
                 <h5 class="card-title text-light fw-bold w-100 text-center fs-3">CHOOSE AVATARS</h5>
                 <p class="card-text text-center">Select which avatar you want to be on your profile
                 </p>
-                <form action="{{ route('make_visible', $auth_user) }}" method="post">
+                <form
+                    action="
+                @if (Session::has('chooseSess')) {{ route('change_avatar', $auth_user) }}
+                @else
+                {{ route('make_visible', $auth_user) }} @endif"
+                    method="post">
                     @csrf
                     <div class="d-flex flex-wrap justify-content-center align-items-center">
                         @foreach ($auth_user->collections as $collection)
