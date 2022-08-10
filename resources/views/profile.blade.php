@@ -63,7 +63,8 @@ $number = 1;
                                 </a>
                             </div>
                             <div class="border-bottom fw-bold">
-                                <a href="#" class="btn w-100 py-4 fw-bold">
+                                <a href="#" class="btn w-100 py-4 fw-bold" id="settingBtn"
+                                    @if (Session::has('visibleSess')) style="background-color: black; color: white;" @endif>
                                     SETTINGS
                                 </a>
                             </div>
@@ -142,6 +143,32 @@ $number = 1;
                                     COINS</button>
                             </form>
                         </div>
+                        {{-- SETTING SECTION --}}
+                        <div class="col-sm-8 border shadow-sm rounded-3 text-center mt-3 bg-dark text-light py-3" id="setting"
+                            @if (Session::has('visibleSess')) style="display: block" @endif style="display: none">
+                            <h2 class="fs-3 fw-bold">Current Visibility: </h2>
+                            @if ($user->hidden)
+                                <div class="d-flex justify-content-center align-items-center gap-2">
+                                    <h3 class="text-danger fw-bold">HIDDEN</h3>
+                                    <form action="{{ route('confirm_visible') }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-dark">
+                                            <i class="fa-solid fa-eye-slash pb-3 fa-xl text-secondary"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            @else
+                                <div class="d-flex justify-content-center align-items-center gap-2">
+                                    <h3 class="text-success fw-bold">VISIBLE</h3>
+                                    <form action="{{ route('confirm_hidden') }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-dark">
+                                            <i class="fa-solid fa-eye pb-3 fa-xl text-secondary"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 @endif
             @endauth
@@ -153,8 +180,8 @@ $number = 1;
                     <div class="border shadow-sm rounded-3 text-center">
                         <div class="d-flex align-items-center justify-content-evenly">
                             <div class="">
-                                <img src="{{ asset('assets/avatars') }}/{{ $user->photo_profile }}" class="card-img-top mt-3"
-                                    style="width: 12rem">
+                                <img src="{{ asset('assets/avatars') }}/{{ $user->photo_profile }}"
+                                    class="card-img-top mt-3" style="width: 12rem">
                                 <h2 class="fw-bold mt-2">{{ $user->name }}</h2>
                                 <h3 class="fs-4 fw-bold" style="color: gray">{{ $user->gender }}</h3>
                             </div>

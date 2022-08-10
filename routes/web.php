@@ -52,6 +52,16 @@ Route::middleware('auth')->group(function () {
         Route::controller(ProfileController::class)->group(function () {
             Route::post('/topup/{user}', 'topup')->name('topup');
             Route::get('/topup/{user}', 'viewError');
+            Route::post('/hidden/confirm', 'confirmHidden')->name('confirm_hidden');
+            Route::get('/hidden/confirm', 'viewError');
+            Route::post('/hidden/{user}', 'makeHidden')->name('make_hidden');
+            Route::get('/hidden/{user}', 'viewError');
+            Route::post('/visible/confirm', 'confirmVisible')->name('confirm_visible');
+            Route::get('/visible/confirm', 'viewError');
+            Route::post('/visible/{user}/choose', 'chooseVisible')->name('choose_visible');
+            Route::get('/visible/{user}/choose', 'viewError')->name('choose_visible');
+            Route::post('/visible/{user}', 'makeVisible')->name('make_visible');
+            Route::get('/visible/{user}', 'viewError');
         });
     });
 });

@@ -195,4 +195,133 @@
             </div>
         </div>
     </div>
+@elseif(Session::has('confirm_hidden'))
+    @php
+        $auth_user = auth()->user();
+    @endphp
+    <div class="w-25">
+        <div class="card text-bg-dark"
+            style="
+                width: 19rem;
+                position: fixed;
+                left: 50%;
+                top: 25%;
+                z-index: 1000 !important;
+                transform: translateX(-50%);
+                "
+            id="confirm_hidden_card">
+            <div class="card-body">
+                <div class="d-flex justify-content-end">
+                    <a href="#" class="text-light" id="xBtn">
+                        <i class="fa-solid fa-x"></i>
+                    </a>
+                </div>
+                <h5 class="card-title text-light fw-bold w-100 text-center fs-3">CONFIRMATION</h5>
+                <p class="card-text text-center">Are you sure you want to be hidden by paying
+                    <i class="fa-solid fa-coins"></i>
+                    50?
+                </p>
+                <p class="card-text text-center">(Your balance is:
+                    @if ($auth_user->balance >= 50)
+                        <i class="fa-solid fa-coins text-success"></i>
+                        <span class="text-success fw-bold"> {{ $auth_user->balance_format }}</span>
+                    @else
+                        <i class="fa-solid fa-coins text-danger"></i>
+                        <span class="text-danger fw-bold"> {{ $auth_user->balance_format }}</span>
+                    @endif
+                    )
+                </p>
+                <form action="{{ route('make_hidden', $auth_user) }}" method="post">
+                    @csrf
+                    <button type="submit" class="btn btn-outline-light w-100 mb-2" id="yesBtn"
+                        @if ($auth_user->balance < 50) disabled @endif>Yes</button>
+                </form>
+                <a href="#" class="btn btn-outline-light w-100 mb-2" id="noBtn">No</a>
+            </div>
+        </div>
+    </div>
+@elseif(Session::has('confirm_visible'))
+    @php
+        $auth_user = auth()->user();
+    @endphp
+    <div class="w-25">
+        <div class="card text-bg-dark"
+            style="
+                width: 19rem;
+                position: fixed;
+                left: 50%;
+                top: 25%;
+                z-index: 1000 !important;
+                transform: translateX(-50%);
+                "
+            id="confirm_visible_card">
+            <div class="card-body">
+                <div class="d-flex justify-content-end">
+                    <a href="#" class="text-light" id="xBtn">
+                        <i class="fa-solid fa-x"></i>
+                    </a>
+                </div>
+                <h5 class="card-title text-light fw-bold w-100 text-center fs-3">CONFIRMATION</h5>
+                <p class="card-text text-center">Are you sure you want to be visible by paying
+                    <i class="fa-solid fa-coins"></i>
+                    5?
+                </p>
+                <p class="card-text text-center">(Your balance is:
+                    @if ($auth_user->balance >= 5)
+                        <i class="fa-solid fa-coins text-success"></i>
+                        <span class="text-success fw-bold"> {{ $auth_user->balance_format }}</span>
+                    @else
+                        <i class="fa-solid fa-coins text-danger"></i>
+                        <span class="text-danger fw-bold"> {{ $auth_user->balance_format }}</span>
+                    @endif
+                    )
+                </p>
+                <form action="{{ route('choose_visible', $auth_user) }}" method="post">
+                    @csrf
+                    <button type="submit" class="btn btn-outline-light w-100 mb-2" id="yesBtn"
+                        @if ($auth_user->balance < 5) disabled @endif>Yes</button>
+                </form>
+                <a href="#" class="btn btn-outline-light w-100 mb-2" id="noBtn">No</a>
+            </div>
+        </div>
+    </div>
+@elseif(Session::has('choose_visible'))
+    @php
+        $auth_user = auth()->user();
+    @endphp
+    <div class="w-25">
+        <div class="card text-bg-dark"
+            style="
+                width: 30rem;
+                position: fixed;
+                left: 50%;
+                top: 25%;
+                z-index: 1000 !important;
+                transform: translateX(-50%);
+                "
+            id="confirm_visible_card">
+            <div class="card-body">
+                <div class="d-flex justify-content-end">
+                    <a href="#" class="text-light" id="xBtn">
+                        <i class="fa-solid fa-x"></i>
+                    </a>
+                </div>
+                <h5 class="card-title text-light fw-bold w-100 text-center fs-3">CHOOSE AVATARS</h5>
+                <p class="card-text text-center">Select which avatar you want to be on your profile
+                </p>
+                <form action="{{ route('make_visible', $auth_user) }}" method="post">
+                    @csrf
+                    <div class="d-flex flex-wrap justify-content-center align-items-center">
+                        @foreach ($auth_user->collections as $collection)
+                            <button type="submit" class="btn btn-outline-light mb-3 mx-2" name="profile"
+                                value="{{ $collection->avatar->image }}">
+                                <img src="{{ asset('assets/avatars') }}/{{ $collection->avatar->image }}"
+                                    style="width: 3rem">
+                            </button>
+                        @endforeach
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endif
