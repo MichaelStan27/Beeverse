@@ -30,7 +30,7 @@ class DashboardController extends Controller
             ->join('hobbies', 'header_hobbies.hobby_id', '=', 'hobbies.id');
 
         // Exclude auth user from query
-        if ($user) $query = $query->where('id', '<>', $user->id);
+        if ($user) $query = $query->where('users.id', '<>', $user->id);
 
         // Query Keyword from search
         $keyword = $request->query('keyword');
