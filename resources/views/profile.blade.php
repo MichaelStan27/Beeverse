@@ -54,6 +54,20 @@ $number = 1;
                                     @endif
                                 </div>
                             </div>
+                            <div class="mt-3 mb-3">
+                                <h3 class="fw-bold text-secondary">HOBBIES</h3>
+                                <div class="row d-flex justify-content-center gap-1">
+                                    @foreach ($user->headerHobbies as $header)
+                                        <div class="col border rounded-2 mx-3 bg-secondary text-light shadow-sm py-2">
+                                            <img src="{{ asset('assets/hobbies') }}/{{ $header->hobby->image }}" alt=""
+                                                style="width: 5rem">
+                                            <span class="fw-bold fs-5" style="margin-left: 1rem">
+                                                {{ $header->hobby->activity }}
+                                            </span>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                         {{-- SETTING CARD SECTION --}}
                         <div class="col-sm-3 border shadow-sm rounded-3 px-0" style="max-height: 18.5rem">
@@ -183,7 +197,7 @@ $number = 1;
                 @else
                 style="display: block" @endif
                     @endauth @guest style="display: block" @endguest>
-                    <div class="border shadow-sm rounded-3 text-center">
+                    <div class="border shadow-sm rounded-3 text-center position-relative">
                         <div class="d-flex align-items-center justify-content-evenly">
                             <div class="">
                                 <img src="{{ asset('assets/avatars') }}/{{ $user->photo_profile }}"
@@ -215,6 +229,41 @@ $number = 1;
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
+                            @auth
+                                @php
+                                    $wishlist = auth()
+                                        ->user()
+                                        ->wishlists()
+                                        ->where('user_id_wishlisted', '=', $user->id)
+                                        ->first();
+                                @endphp
+                                <div class="position-absolute" style="top: 1rem; right: 2rem;">
+                                    <form action="{{ route('add_friend', $user) }}" method="post">
+                                        @csrf
+                                        <button type="submit"
+                                            class="btn btn-light fs-2 
+                                        @if ($wishlist) text-success
+                                        @else
+                                        text-secondary @endif
+                                        "><i
+                                                class="fa-solid fa-thumbs-up fa-xl"></i></button>
+                                    </form>
+                                </div>
+                            @endauth
+                        </div>
+                        <div class="mt-3 mb-3">
+                            <h3 class="fw-bold text-secondary">HOBBIES</h3>
+                            <div class="row d-flex justify-content-center">
+                                @foreach ($user->headerHobbies as $header)
+                                    <div class="col rounded-2 mx-3 bg-secondary text-light shadow-sm py-2 border">
+                                        <img src="{{ asset('assets/hobbies') }}/{{ $header->hobby->image }}" alt=""
+                                            style="width: 5rem">
+                                        <span class="fw-bold fs-5" style="margin-left: 1rem">
+                                            {{ $header->hobby->activity }}
+                                        </span>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -279,5 +328,7 @@ $number = 1;
                         </div>
                     </div>
                 </div>
+            </div>
+            </div>
             </div>
         @endsection

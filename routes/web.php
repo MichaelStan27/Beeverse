@@ -66,6 +66,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/choose/{user}', 'viewError');
             Route::post('/change/{user}', 'changeAvatar')->name('change_avatar');
             Route::get('/change/{user}', 'viewError');
+            Route::post('/{user}/add', 'addFriend')->name('add_friend');
         });
     });
 });

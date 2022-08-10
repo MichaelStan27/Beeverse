@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -10,7 +11,7 @@ class ProfileController extends Controller
     public function index(User $user)
     {
         return view('profile', [
-            'user' => User::with(['collections', 'collections.avatar', 'transactions', 'transactions.avatar', 'receives'])->where('id', $user->id)->first(),
+            'user' => User::with(['collections', 'collections.avatar', 'transactions', 'transactions.avatar', 'receives', 'headerHobbies', 'headerHobbies.hobby', 'wishlists'])->where('id', $user->id)->first(),
         ]);
     }
 
@@ -88,5 +89,24 @@ class ProfileController extends Controller
             'photo_profile' => $request->profile,
         ]);
         return redirect()->back()->with('message', 'photo profile successfully changed');
+    }
+
+    public function addFriend(User $user)
+    {
+        $auth_user = User::with('wishlists')->find(auth()->user()->id);
+
+        $friend = $auth_user->wishlists()->where('user_id_wishlisted', '=', $user->id)->first();
+
+        if (!$friend) {
+            Wishlist::create([
+                'user_id' => $auth_user->id,
+                'user_id_wishlisted' => $user->id
+            ]);
+            return redirect()->back()->with('message', "$user->name is added to your wishlist(s)");
+        }
+
+        $friend->delete();
+
+        return redirect()->back()->with('message', "$user->name is removed from your wishlist(s)");
     }
 }

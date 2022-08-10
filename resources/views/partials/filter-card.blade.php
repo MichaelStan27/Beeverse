@@ -1,4 +1,5 @@
-<form action="{{ route('search') }}" method="get" class="border shadow-sm rounded-3 py-3 bg-dark text-light px-2">
+<form action="{{ route('search') }}" method="get" class="border shadow-sm rounded-3 py-3 bg-dark text-light px-2"
+    id="formFilter">
     <h3 class="fw-bold mb-3 text-center">SEARCH</h3>
     @csrf
     <input class="form-control mx-auto mb-4" type="search" placeholder="Keyword" autocomplete="off" name="keyword"
@@ -35,6 +36,6 @@
                 </li>
             @endforeach
         </ul>
-        <button type="submit" class="btn btn-light px-4 w-100 mb-2">Search</button>
+        <button type="submit" class="btn btn-light px-4 w-100 mb-2" id="searchBtn">Search</button>
     </div>
 </form>
