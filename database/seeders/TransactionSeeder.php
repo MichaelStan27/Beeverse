@@ -46,7 +46,7 @@ class TransactionSeeder extends Seeder
             [
                 'user_id' => 2,
                 'user_id_sent' => 8,
-                'avatar_id' => 10,
+                'avatar_id' => 12,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

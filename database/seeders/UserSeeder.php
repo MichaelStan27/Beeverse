@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             [
                 'ig_username' => 'cicil',
                 'name' => 'Cicil',
-                'photo_profile' => 'women_child.png',
+                'photo_profile' => 'horse.png',
                 'gender' => 'Female',
                 'email' => 'cil@gmail.com',
                 'number' => '0812351227833',
@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
             [
                 'ig_username' => 'ethann1325',
                 'name' => 'Ethan Wang',
-                'photo_profile' => 'dragon.png',
+                'photo_profile' => 'man_worker.png',
                 'gender' => 'Male',
                 'email' => 'ethan@gmail.com',
                 'number' => '081235927829',
@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
             [
                 'ig_username' => 'rafaelstevenn',
                 'name' => 'Steven',
-                'photo_profile' => 'bull.png',
+                'photo_profile' => 'cat.png',
                 'gender' => 'Male',
                 'email' => 'steven@gmail.com',
                 'number' => '081235927830',
@@ -64,7 +64,7 @@ class UserSeeder extends Seeder
             [
                 'ig_username' => 'michellepauline',
                 'name' => 'Michelle Pauline',
-                'photo_profile' => 'woman_ponytail.png',
+                'photo_profile' => 'man_chill.png',
                 'gender' => 'Female',
                 'email' => 'michelle@gmail.com',
                 'number' => '081235927824',
@@ -79,7 +79,7 @@ class UserSeeder extends Seeder
             [
                 'ig_username' => 'ti_nutuan',
                 'name' => 'Fernando Clemente',
-                'photo_profile' => 'tiger.png',
+                'photo_profile' => 'bull.png',
                 'gender' => 'Male',
                 'email' => 'nando@gmail.com',
                 'number' => '081235927831',
@@ -94,7 +94,7 @@ class UserSeeder extends Seeder
             [
                 'ig_username' => 'pascalwilman',
                 'name' => 'Pascal Wilman',
-                'photo_profile' => 'gamer.png',
+                'photo_profile' => 'default.png',
                 'gender' => 'Male',
                 'email' => 'pascal@gmail.com',
                 'number' => '081235927851',
@@ -109,7 +109,7 @@ class UserSeeder extends Seeder
             [
                 'ig_username' => 'lusia',
                 'name' => 'Lusia',
-                'photo_profile' => 'tiger.png',
+                'photo_profile' => 'dragon.png',
                 'gender' => 'Female',
                 'email' => 'lus@gmail.com',
                 'number' => '081235927833',
@@ -124,7 +124,7 @@ class UserSeeder extends Seeder
             [
                 'ig_username' => 'exy',
                 'name' => 'Exaudina',
-                'photo_profile' => 'bull.png',
+                'photo_profile' => 'anaconda.png',
                 'gender' => 'Female',
                 'email' => 'exy@gmail.com',
                 'number' => '0812351227823',

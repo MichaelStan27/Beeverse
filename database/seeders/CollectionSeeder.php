@@ -22,6 +22,30 @@ class CollectionSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'user_id' => 3,
+                'avatar_id' => 9,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 3,
+                'avatar_id' => 2,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 3,
+                'avatar_id' => 10,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 3,
+                'avatar_id' => 8,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'user_id' => 5,
                 'avatar_id' => 8,
                 'created_at' => now(),
@@ -41,7 +65,7 @@ class CollectionSeeder extends Seeder
             ],
             [
                 'user_id' => 8,
-                'avatar_id' => 10,
+                'avatar_id' => 12,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
