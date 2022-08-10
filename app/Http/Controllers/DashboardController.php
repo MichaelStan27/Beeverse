@@ -32,6 +32,9 @@ class DashboardController extends Controller
         // Exclude auth user from query
         if ($user) $query = $query->where('users.id', '<>', $user->id);
 
+        // Exclude hidden user
+        $query->where('users.hidden', '=', false);
+
         // Query Keyword from search
         $keyword = $request->query('keyword');
 
