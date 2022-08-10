@@ -46,7 +46,7 @@ $number = 1;
                                             </tr>
                                         </tbody>
                                     </table>
-                                    @if (!$user->collections->isEmpty())
+                                    @if (!$user->collections->isEmpty() && !$user->hidden)
                                         <form action="{{ route('choose_avatar', $user) }}" method="post">
                                             @csrf
                                             <button type="submit" class="btn btn-secondary w-100">Edit Profile</button>
