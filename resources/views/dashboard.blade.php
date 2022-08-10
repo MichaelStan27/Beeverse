@@ -10,14 +10,16 @@
                     @include('partials.filter-card')
                 </div>
                 <div class="col-9 px-4">
-                    @foreach ($users as $user)
+                    @forelse ($users as $user)
                         @auth
                             @if ($user->id == auth()->user()->id)
                                 @continue
                             @endif
                         @endauth
                         <x-user-card :user="$user"></x-user-card>
-                    @endforeach
+                    @empty
+                        <h3 class="text-center fw-bold text-secondary" style="margin-top: 12rem">NO USER FOUND</h3>
+                    @endforelse
                 </div>
             </div>
         </div>

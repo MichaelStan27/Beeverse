@@ -67,7 +67,7 @@
                 @endauth
 
                 @guest
-                    <li class="nav-item dropdown position-absolute fw-bold" style="right: 6rem">
+                    <li class="nav-item dropdown position-absolute fw-bold" style="right: 6rem; top:2rem">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Guest
