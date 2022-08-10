@@ -72,6 +72,7 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(DashboardController::class)->group(function () {
     Route::get('/', 'index')->name('dashboard');
+    Route::get('/search', 'search')->name('search');
 });
 
 Route::controller(ProfileController::class)->group(function () {
