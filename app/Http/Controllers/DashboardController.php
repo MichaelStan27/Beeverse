@@ -16,7 +16,7 @@ class DashboardController extends Controller
         }
         return view('dashboard', [
             'hobbies' => Hobby::all(),
-            'users' => User::with(['headerHobbies', 'headerHobbies.hobby'])->paginate(5),
+            'users' => User::with(['headerHobbies', 'headerHobbies.hobby'])->where('hidden', false)->paginate(5),
         ]);
     }
 }

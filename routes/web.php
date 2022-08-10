@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
@@ -53,4 +54,8 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(DashboardController::class)->group(function () {
     Route::get('/', 'index')->name('dashboard');
+});
+
+Route::controller(ProfileController::class)->group(function () {
+    Route::get('/{user}/profile', 'index')->name('profile')->middleware('can:see');
 });

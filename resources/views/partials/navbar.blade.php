@@ -26,8 +26,10 @@
                                     <li>
                                         <div
                                             class="text-center d-flex flex-column align-items-center justify-content-center mt-3">
-                                            <img src="{{ asset('assets/avatars') }}/{{ auth()->user()->photo_profile }}"
-                                                style="width: 4rem">
+                                            <a href="{{ route('profile', auth()->user()) }}" class="">
+                                                <img src="{{ asset('assets/avatars') }}/{{ auth()->user()->photo_profile }}"
+                                                    style="width: 4rem">
+                                            </a>
                                             @if (auth()->user()->hidden)
                                                 <p class="text-dark mb-1">hidden</p>
                                             @else
