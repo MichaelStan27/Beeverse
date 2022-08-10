@@ -46,10 +46,12 @@ $number = 1;
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <form action="{{ route('choose_avatar', $user) }}" method="post">
-                                        @csrf
-                                        <button type="submit" class="btn btn-secondary w-100">Edit Avatar</button>
-                                    </form>
+                                    @if (!$user->collections->isEmpty())
+                                        <form action="{{ route('choose_avatar', $user) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn btn-secondary w-100">Edit Profile</button>
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>
