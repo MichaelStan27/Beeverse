@@ -23,12 +23,35 @@
                             </a>
                             <ul class="dropdown-menu py-0">
                                 @can('see', auth()->user())
-                                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                                    <li>
+                                        <div
+                                            class="text-center d-flex flex-column align-items-center justify-content-center mt-3">
+                                            <img src="{{ asset('assets/avatars') }}/{{ auth()->user()->photo_profile }}"
+                                                style="width: 4rem">
+                                            @if (auth()->user()->hidden)
+                                                <p class="text-dark mb-1">hidden</p>
+                                            @else
+                                                <p class="text-success mb-1">visible</p>
+                                            @endif
+                                            <p style="color: gray">Balance: <br>
+                                                <span class="text-dark fw-bold">
+                                                    <i class="fa-solid fa-coins"></i>
+                                                    {{ auth()->user()->balance_format }}
+                                                </span>
+                                            </p>
+                                        </div>
+                                        @if (Route::is('profile'))
+                                            <a class="dropdown-item text-center" href="{{ route('dashboard') }}">Dashboard</a>
+                                        @else
+                                            <a class="dropdown-item text-center"
+                                                href="{{ route('profile', auth()->user()) }}">Profile</a>
+                                        @endif
+                                    </li>
                                 @endcan
                                 <form action="{{ route('logout') }}" method="post">
                                     @csrf
                                     <li>
-                                        <button type="submit" class="dropdown-item">
+                                        <button type="submit" class="dropdown-item text-center">
                                             Log out
                                         </button>
                                     </li>

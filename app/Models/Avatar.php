@@ -30,6 +30,6 @@ class Avatar extends Model
 
     public function getPriceFormatAttribute()
     {
-        return 'IDR ' . number_format($this->attributes['price']);
+        return number_format($this->attributes['price']);
     }
 }

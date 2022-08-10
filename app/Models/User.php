@@ -67,6 +67,6 @@ class User extends Authenticatable
 
     public function getBalanceFormatAttribute()
     {
-        return 'IDR ' . number_format($this->balance);
+        return number_format($this->balance);
     }
 }

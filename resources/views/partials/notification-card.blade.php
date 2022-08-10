@@ -100,11 +100,15 @@
                 </div>
                 <h5 class="card-title text-light fw-bold w-100 text-center fs-3">Buy</h5>
                 <p class="card-text text-center">Are you sure you want to buy this avatar for
-                    {{ $avatar->price_format }}?</p>
+                    <i class="fa-solid fa-coins"></i>
+                    {{ $avatar->price_format }}?
+                </p>
                 <p class="card-text text-center">(Your balance is:
                     @if ($auth_user->balance >= $avatar->price)
+                        <i class="fa-solid fa-coins text-success"></i>
                         <span class="text-success fw-bold"> {{ $auth_user->balance_format }}</span>
                     @else
+                        <i class="fa-solid fa-coins text-danger"></i>
                         <span class="text-danger fw-bold"> {{ $auth_user->balance_format }}</span>
                     @endif
                     )
@@ -150,7 +154,10 @@
                 <form action="{{ route('send_avatar', $auth_user) }}" method="post">
                     @csrf
                     <h5 class="card-title text-light fw-bold w-100 text-center fs-3">Send</h5>
-                    <p class="card-text text-center">{{ $avatar->price_format }}</p>
+                    <div class="d-flex justify-content-center gap-2 mb-3">
+                        <i class="fa-solid fa-coins py-1"></i>
+                        <p class="card-text text-center">{{ $avatar->price_format }}</p>
+                    </div>
                     @if ($auth_user->balance >= $avatar->price)
                         <p class="card-text text-center">Who do you want to send this avatar for?</p>
                         <select class="form-select mb-4" aria-label="Select User" name="sended_user">
@@ -167,8 +174,10 @@
                     @endif
                     <p class="card-text text-center">(Your balance is:
                         @if ($auth_user->balance > $avatar->price)
+                            <i class="fa-solid fa-coins text-success"></i>
                             <span class="text-success fw-bold"> {{ $auth_user->balance_format }}</span>
                         @else
+                            <i class="fa-solid fa-coins text-danger"></i>
                             <span class="text-danger fw-bold"> {{ $auth_user->balance_format }}</span>
                         @endif
                         )
