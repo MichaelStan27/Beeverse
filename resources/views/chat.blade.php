@@ -18,9 +18,9 @@
                             style="width: 48px; margin-right: 1rem">
                         {{ $friend->name }}
                     </div>
-                    <div class="card-body height3" style="background: #2d2e30;">
-                        <ul class="chat-list overflow-auto"
-                            style="height: 25rem; padding: 0;
+                    <div class="card-body height3 overflow-auto d-flex flex-column-reverse"
+                        style="background: #2d2e30; height: 28rem">
+                        <ul class="chat-list" id="chat-list" style="padding: 0;
                         font-size: 0.9rem;">
                             @foreach ($chats as $chat)
                                 <li class="@if ($chat->user_id == auth()->user()->id) out @else in @endif">
@@ -36,7 +36,7 @@
                     </div>
                     <form action="{{ route('chat', ['user' => $friend, 'room' => $room]) }}" method="post">
                         @csrf
-                        <div class="d-flex justify-content-center align-content-center gap-2">
+                        <div class="d-flex justify-content-center align-content-center gap-2 mt-2">
                             <input type="text" name="chat" id="chat" class="rounded-5 w-75 px-3"
                                 autocomplete="off" placeholder="Write a message...">
                             <button type="submit" class="border-0" style="background: #2d2e30"><i
