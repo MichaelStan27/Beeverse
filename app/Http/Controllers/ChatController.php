@@ -22,11 +22,8 @@ class ChatController extends Controller
 
     public function viewChat(User $user, Room $room)
     {
-
-        $chats = Chat::with('user')->where(function ($query) use ($user) {
-            $query->where('user_id', '=', $user->id)
-                ->orWhere('user_id', '=', auth()->user()->id);
-        })->where('room_id', '=', $room->id)->get();
+        // get all chats from 2 users
+        $chats = Chat::with('user')->where('room_id', '=', $room->id)->get();
 
         return view('chat', [
             'friend' => $user,
