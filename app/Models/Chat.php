@@ -18,8 +18,8 @@ class Chat extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function user_chat()
+    public function room()
     {
-        return $this->belongsTo(User::class, 'user_id_chat');
+        return $this->belongsTo(Room::class);
     }
 }

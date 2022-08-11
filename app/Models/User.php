@@ -70,6 +70,11 @@ class User extends Authenticatable
         return $this->hasMany(Chat::class);
     }
 
+    public function participants()
+    {
+        return $this->hasMany(Participant::class);
+    }
+
     public function getBalanceFormatAttribute()
     {
         return number_format($this->balance);

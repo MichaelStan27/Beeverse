@@ -12,4 +12,14 @@ class Room extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function participants()
+    {
+        return $this->hasMany(Participant::class);
+    }
+
+    public function chats()
+    {
+        return $this->hasMany(Chat::class);
+    }
 }
