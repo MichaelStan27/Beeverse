@@ -56,7 +56,7 @@
                                 </form>
                             </ul>
                         </li>
-                        @if (!Route::is('shop'))
+                        @if (!Route::is('shop') && !Route::is('chat'))
                             <li class="nav-item position-absolute" style="right: 18rem; top: 2rem;">
                                 @can('see', auth()->user())
                                     <a class="nav-link active" aria-current="page" href="{{ route('shop') }}"><i
