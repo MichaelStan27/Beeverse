@@ -15,7 +15,7 @@ This project was made to fulfill the requirements of the web programming final e
 1. Clone this repository
 
 ```
-git clone https://github.com/MichaelStan27/Bookpedia
+git clone https://github.com/MichaelStan27/Beeverse
 ```
 
 2. Install all project dependencies
