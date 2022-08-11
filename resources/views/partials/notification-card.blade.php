@@ -316,7 +316,8 @@
                 {{ route('make_visible', $auth_user) }} @endif"
                     method="post">
                     @csrf
-                    <div class="d-flex flex-wrap justify-content-center align-items-center">
+                    <div class="d-flex flex-wrap justify-content-center align-items-center overflow-auto"
+                        style="max-height: 10rem">
                         @foreach ($auth_user->collections as $collection)
                             <button type="submit" class="btn btn-outline-light mb-3 mx-2" name="profile"
                                 value="{{ $collection->avatar->image }}">

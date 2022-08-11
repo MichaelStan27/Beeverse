@@ -102,12 +102,14 @@ $number = 1;
                             style="display: none">
                             <h3 class="fw-bold mt-2 text-light mb-3">COLLECTIONS</h3>
                             @if (!$user->collections->isEmpty())
-                                <div class="row row-cols-1 row-cols-md-4">
-                                    @foreach ($user->collections as $collection)
-                                        <div class="col">
-                                            <x-collection-card :collection="$collection"></x-collection-card>
-                                        </div>
-                                    @endforeach
+                                <div class="overflow-auto" style="max-height: 35rem">
+                                    <div class="row row-cols-1 row-cols-md-4">
+                                        @foreach ($user->collections as $collection)
+                                            <div class="col">
+                                                <x-collection-card :collection="$collection"></x-collection-card>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             @else
                                 <div class="d-flex align-items-center justify-content-center gap-2">
@@ -118,39 +120,41 @@ $number = 1;
                             @if (!$user->transactions->isEmpty() || !$user->receives->isEmpty())
                                 {{-- TRANSACTIONS SECTION --}}
                                 <h3 class="fw-bold mt-4 text-light mb-3">TRANSACTIONS</h3>
-                                <table class="table table-dark table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">User</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Avatar</th>
-                                            <th scope="col">Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($user->transactions as $transaction)
+                                <div class="overflow-auto" style="max-height: 15rem">
+                                    <table class="table table-dark table-striped">
+                                        <thead>
                                             <tr>
-                                                <th scope="row">{{ $number++ }}</th>
-                                                <td>{{ $transaction->user_sent->name }}</td>
-                                                <td class="text-danger fw-bold">Send</td>
-                                                <td><img src="{{ asset('assets/avatars') }}/{{ $transaction->avatar->image }}"
-                                                        style="width: 3rem"></td>
-                                                <td>{{ $transaction->date }}</td>
+                                                <th scope="col">#</th>
+                                                <th scope="col">User</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Avatar</th>
+                                                <th scope="col">Date</th>
                                             </tr>
-                                        @endforeach
-                                        @foreach ($user->receives as $receive)
-                                            <tr>
-                                                <th scope="row">{{ $number++ }}</th>
-                                                <td>{{ $receive->user->name }}</td>
-                                                <td class="text-success fw-bold">Received</td>
-                                                <td><img src="{{ asset('assets/avatars') }}/{{ $receive->avatar->image }}"
-                                                        style="width: 3rem"></td>
-                                                <td>{{ $receive->date }}</td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($user->transactions as $transaction)
+                                                <tr>
+                                                    <th scope="row">{{ $number++ }}</th>
+                                                    <td>{{ $transaction->user_sent->name }}</td>
+                                                    <td class="text-danger fw-bold">Send</td>
+                                                    <td><img src="{{ asset('assets/avatars') }}/{{ $transaction->avatar->image }}"
+                                                            style="width: 3rem"></td>
+                                                    <td>{{ $transaction->date }}</td>
+                                                </tr>
+                                            @endforeach
+                                            @foreach ($user->receives as $receive)
+                                                <tr>
+                                                    <th scope="row">{{ $number++ }}</th>
+                                                    <td>{{ $receive->user->name }}</td>
+                                                    <td class="text-success fw-bold">Received</td>
+                                                    <td><img src="{{ asset('assets/avatars') }}/{{ $receive->avatar->image }}"
+                                                            style="width: 3rem"></td>
+                                                    <td>{{ $receive->date }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             @endif
                         </div>
                         {{-- TOPUP SECTION --}}
@@ -243,11 +247,11 @@ $number = 1;
                                         @csrf
                                         <button type="submit"
                                             class="btn btn-light fs-2 
-                                        @if ($wishlist) text-success
+                                        @if ($wishlist) text-danger
                                         @else
                                         text-secondary @endif
                                         "><i
-                                                class="fa-solid fa-thumbs-up fa-xl"></i></button>
+                                                class="fa-solid fa-heart fa-xl"></i></button>
                                     </form>
                                 </div>
                             @endauth
@@ -276,12 +280,14 @@ $number = 1;
                         <div class="border shadow-sm rounded-3 text-center mt-3 py-4 px-4 bg-dark" id="collections" style>
                             <h3 class="fw-bold mt-2 text-light mb-3">COLLECTIONS</h3>
                             @if (!$user->collections->isEmpty())
-                                <div class="row row-cols-1 row-cols-md-4">
-                                    @foreach ($user->collections as $collection)
-                                        <div class="col">
-                                            <x-collection-card :collection="$collection"></x-collection-card>
-                                        </div>
-                                    @endforeach
+                                <div class="overflow-auto" style="max-height: 35rem">
+                                    <div class="row row-cols-1 row-cols-md-4">
+                                        @foreach ($user->collections as $collection)
+                                            <div class="col">
+                                                <x-collection-card :collection="$collection"></x-collection-card>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             @else
                                 <div class="d-flex align-items-center justify-content-center gap-2">
@@ -291,39 +297,41 @@ $number = 1;
                             @endif
                             @if (!$user->transactions->isEmpty() || !$user->receives->isEmpty())
                                 <h3 class="fw-bold mt-4 text-light mb-3">TRANSACTIONS</h3>
-                                <table class="table table-dark table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">User</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Avatar</th>
-                                            <th scope="col">Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($user->transactions as $transaction)
+                                <div class="overflow-auto" style="max-height: 20rem">
+                                    <table class="table table-dark table-striped">
+                                        <thead>
                                             <tr>
-                                                <th scope="row">{{ $number++ }}</th>
-                                                <td>{{ $transaction->user_sent->name }}</td>
-                                                <td class="text-danger fw-bold">Send</td>
-                                                <td><img src="{{ asset('assets/avatars') }}/{{ $transaction->avatar->image }}"
-                                                        style="width: 3rem"></td>
-                                                <td>{{ $transaction->date }}</td>
+                                                <th scope="col">#</th>
+                                                <th scope="col">User</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Avatar</th>
+                                                <th scope="col">Date</th>
                                             </tr>
-                                        @endforeach
-                                        @foreach ($user->receives as $receive)
-                                            <tr>
-                                                <th scope="row">{{ $number++ }}</th>
-                                                <td>{{ $receive->user->name }}</td>
-                                                <td class="text-success fw-bold">Received</td>
-                                                <td><img src="{{ asset('assets/avatars') }}/{{ $receive->avatar->image }}"
-                                                        style="width: 3rem"></td>
-                                                <td>{{ $receive->date }}</td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($user->transactions as $transaction)
+                                                <tr>
+                                                    <th scope="row">{{ $number++ }}</th>
+                                                    <td>{{ $transaction->user_sent->name }}</td>
+                                                    <td class="text-danger fw-bold">Send</td>
+                                                    <td><img src="{{ asset('assets/avatars') }}/{{ $transaction->avatar->image }}"
+                                                            style="width: 3rem"></td>
+                                                    <td>{{ $transaction->date }}</td>
+                                                </tr>
+                                            @endforeach
+                                            @foreach ($user->receives as $receive)
+                                                <tr>
+                                                    <th scope="row">{{ $number++ }}</th>
+                                                    <td>{{ $receive->user->name }}</td>
+                                                    <td class="text-success fw-bold">Received</td>
+                                                    <td><img src="{{ asset('assets/avatars') }}/{{ $receive->avatar->image }}"
+                                                            style="width: 3rem"></td>
+                                                    <td>{{ $receive->date }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             @endif
                         </div>
                     </div>
