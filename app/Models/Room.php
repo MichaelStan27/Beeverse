@@ -22,4 +22,18 @@ class Room extends Model
     {
         return $this->hasMany(Chat::class);
     }
+
+    public function getTimeCreatedAttribute()
+    {
+        $date = $this->created_at;
+
+        return $date->format('H:i A');
+    }
+
+    public function getDateCreatedAttribute()
+    {
+        $date = $this->created_at;
+
+        return $date->format('M d, Y');
+    }
 }

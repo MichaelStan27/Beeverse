@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
@@ -23,6 +24,7 @@ Route::middleware('guest')->group(function () {
         Route::get('/register', 'index')->name('register');
         Route::post('/register', 'validation');
     });
+
     Route::controller(LoginController::class)->group(function () {
         Route::get('/login', 'index')->name('login');
         Route::post('/login', 'login');
@@ -49,6 +51,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/send/{user}', 'send')->name('send_avatar');
             Route::get('/send/{user}', 'viewError');
         });
+
         Route::controller(ProfileController::class)->group(function () {
             Route::post('/topup/{user}', 'topup')->name('topup');
             Route::get('/topup/{user}', 'viewError');
@@ -67,6 +70,10 @@ Route::middleware('auth')->group(function () {
             Route::post('/change/{user}', 'changeAvatar')->name('change_avatar');
             Route::get('/change/{user}', 'viewError');
             Route::post('/{user}/add', 'addFriend')->name('add_friend');
+        });
+
+        Route::controller(ChatController::class)->group(function () {
+            Route::get('/chat', 'index')->name('list_chat');
         });
     });
 });

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Participant;
+use App\Models\Room;
 use App\Models\User;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
@@ -97,17 +99,56 @@ class ProfileController extends Controller
     {
         $auth_user = User::with('wishlists')->find(auth()->user()->id);
 
-        $friend = $auth_user->wishlists()->where('user_id_wishlisted', '=', $user->id)->first();
+        $wishlist = $auth_user->wishlists()->where('user_id_wishlisted', '=', $user->id)->first();
+        $is_added = Wishlist::where('user_id', '=', $user->id)->where('user_id_wishlisted', '=', $auth_user->id)->first();
 
-        if (!$friend) {
+        //Check if the auth user already wishlist the other user
+        if (!$wishlist) {
             Wishlist::create([
                 'user_id' => $auth_user->id,
                 'user_id_wishlisted' => $user->id
             ]);
+
+            //check if the other user wishlisted the auth user
+            if ($is_added) {
+                $room = Room::create([
+                    'name' => $auth_user->name . ' ' . $user->name
+                ]);
+
+                Participant::create([
+                    'user_id' => $auth_user->id,
+                    'room_id' => $room->id
+                ]);
+
+                Participant::create([
+                    'user_id' => $user->id,
+                    'room_id' => $room->id
+                ]);
+
+                return redirect()->back()->with('message', "$user->name is added to your friendlist(s), you can chat with them now!");
+            }
             return redirect()->back()->with('message', "$user->name is added to your wishlist(s)");
         }
 
-        $friend->delete();
+        if ($is_added) {
+            //get room
+            $name1 = $auth_user->name . ' ' . $user->name;
+            $name2 = $user->name . ' ' . $auth_user->name;
+            $room1 = Room::where('name', '=', $name1)->first();
+            $room2 = Room::where('name', '=', $name2)->first();
+
+            if ($room1) {
+                $room1->delete();
+            } else {
+                $room2->delete();
+            }
+
+            $wishlist->delete();
+
+            return redirect()->back()->with('message', "$user->name is removed from your friendlist(s), your chat is deleted");
+        }
+
+        $wishlist->delete();
 
         return redirect()->back()->with('message', "$user->name is removed from your wishlist(s)");
     }
