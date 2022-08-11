@@ -17,4 +17,18 @@
     @yield('content')
 </body>
 
+<style>
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: white;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: gray;
+    }
+</style>
+
 </html>
