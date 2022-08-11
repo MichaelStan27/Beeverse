@@ -12,6 +12,7 @@ class ProfileController extends Controller
     {
         return view('profile', [
             'user' => User::with(['collections', 'collections.avatar', 'transactions', 'transactions.avatar', 'receives', 'headerHobbies', 'headerHobbies.hobby', 'wishlists'])->where('id', $user->id)->first(),
+            'followers' => Wishlist::with('user_wishlist')->where('user_id_wishlisted', '=', $user->id)->get(),
         ]);
     }
 

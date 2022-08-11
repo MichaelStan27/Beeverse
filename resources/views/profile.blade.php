@@ -23,7 +23,24 @@ $number = 1;
                                     <h3 class="fs-4 fw-bold" style="color: gray">{{ $user->gender }}</h3>
                                 </div>
                                 <div class="">
-                                    <h2 class="fw-bold mb-4">DETAILS</h2>
+                                    <div class="d-flex gap-4 fw-bold mb-3 mt-2">
+                                        <div class="">
+                                            <h4 class="fs-4 fw-bold">
+                                                Followers
+                                            </h4>
+                                            <h5 class="text-secondary fw-bold">
+                                                {{ $followers->count() }}
+                                            </h5>
+                                        </div>
+                                        <div class="">
+                                            <h4 class="fs-4 fw-bold">
+                                                Following
+                                            </h4>
+                                            <h5 class="text-secondary fw-bold">
+                                                {{ $user->wishlists()->count() }}
+                                            </h5>
+                                        </div>
+                                    </div>
                                     <table class="table text-left">
                                         <tbody>
                                             <tr>
@@ -59,8 +76,8 @@ $number = 1;
                                 <div class="row d-flex justify-content-center gap-1">
                                     @foreach ($user->headerHobbies as $header)
                                         <div class="col border rounded-2 mx-3 bg-secondary text-light shadow-sm py-2">
-                                            <img src="{{ asset('assets/hobbies') }}/{{ $header->hobby->image }}" alt=""
-                                                style="width: 5rem">
+                                            <img src="{{ asset('assets/hobbies') }}/{{ $header->hobby->image }}"
+                                                alt="" style="width: 5rem">
                                             <span class="fw-bold fs-5" style="margin-left: 1rem">
                                                 {{ $header->hobby->activity }}
                                             </span>
@@ -102,8 +119,8 @@ $number = 1;
                             style="display: none">
                             <h3 class="fw-bold mt-2 text-light mb-3">COLLECTIONS</h3>
                             @if (!$user->collections->isEmpty())
-                                <div class="overflow-auto" style="max-height: 35rem">
-                                    <div class="row row-cols-1 row-cols-md-4">
+                                <div style="max-height: 40rem">
+                                    <div class="row row-cols-1 row-cols-md-4" class="overflow-y: auto">
                                         @foreach ($user->collections as $collection)
                                             <div class="col">
                                                 <x-collection-card :collection="$collection"></x-collection-card>
@@ -120,7 +137,7 @@ $number = 1;
                             @if (!$user->transactions->isEmpty() || !$user->receives->isEmpty())
                                 {{-- TRANSACTIONS SECTION --}}
                                 <h3 class="fw-bold mt-4 text-light mb-3">TRANSACTIONS</h3>
-                                <div class="overflow-auto" style="max-height: 15rem">
+                                <div class="overflow-auto" style="max-height: 25rem">
                                     <table class="table table-dark table-striped">
                                         <thead>
                                             <tr>
@@ -168,8 +185,9 @@ $number = 1;
                             </form>
                         </div>
                         {{-- SETTING SECTION --}}
-                        <div class="col-sm-8 border shadow-sm rounded-3 text-center mt-3 bg-dark text-light py-3" id="setting"
-                            @if (Session::has('visibleSess')) style="display: block" @endif style="display: none">
+                        <div class="col-sm-8 border shadow-sm rounded-3 text-center mt-3 bg-dark text-light py-3"
+                            id="setting" @if (Session::has('visibleSess')) style="display: block" @endif
+                            style="display: none">
                             <h2 class="fs-3 fw-bold">Current Visibility: </h2>
                             @if ($user->hidden)
                                 <div class="d-flex justify-content-center align-items-center gap-2">
@@ -210,7 +228,26 @@ $number = 1;
                                 <h3 class="fs-4 fw-bold" style="color: gray">{{ $user->gender }}</h3>
                             </div>
                             <div class="">
-                                <h2 class="fw-bold mb-4">DETAILS</h2>
+                                <div class="">
+                                    <div class="d-flex gap-4 fw-bold mb-3 mt-2">
+                                        <div class="">
+                                            <h4 class="fs-4 fw-bold">
+                                                Followers
+                                            </h4>
+                                            <h5 class="text-secondary fw-bold">
+                                                {{ $followers->count() }}
+                                            </h5>
+                                        </div>
+                                        <div class="">
+                                            <h4 class="fs-4 fw-bold">
+                                                Following
+                                            </h4>
+                                            <h5 class="text-secondary fw-bold">
+                                                {{ $user->wishlists()->count() }}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
                                 <table class="table text-left">
                                     <tbody>
                                         <tr>
@@ -280,8 +317,8 @@ $number = 1;
                         <div class="border shadow-sm rounded-3 text-center mt-3 py-4 px-4 bg-dark" id="collections" style>
                             <h3 class="fw-bold mt-2 text-light mb-3">COLLECTIONS</h3>
                             @if (!$user->collections->isEmpty())
-                                <div class="overflow-auto" style="max-height: 35rem">
-                                    <div class="row row-cols-1 row-cols-md-4">
+                                <div style="max-height: 40rem;">
+                                    <div class="row row-cols-1 row-cols-md-4" style="overflow-y: auto">
                                         @foreach ($user->collections as $collection)
                                             <div class="col">
                                                 <x-collection-card :collection="$collection"></x-collection-card>
@@ -297,7 +334,7 @@ $number = 1;
                             @endif
                             @if (!$user->transactions->isEmpty() || !$user->receives->isEmpty())
                                 <h3 class="fw-bold mt-4 text-light mb-3">TRANSACTIONS</h3>
-                                <div class="overflow-auto" style="max-height: 20rem">
+                                <div class="overflow-auto" style="max-height: 25rem">
                                     <table class="table table-dark table-striped">
                                         <thead>
                                             <tr>
