@@ -1,8 +1,4 @@
-@props(['friend', 'room'])
-
-@php
-$friendParticipants = $friend->participants->where('room_id', '=', $room->id)->first();
-@endphp
+@props(['friend', 'room', 'chats'])
 
 <a href="{{ route('chat', ['user' => $friend, 'room' => $room]) }}" class="text-dark hover" style="text-decoration: none">
     <div class="d-flex w-100 border rounded-2 shadow-sm mx-auto mb-3 row">
@@ -15,24 +11,27 @@ $friendParticipants = $friend->participants->where('room_id', '=', $room->id)->f
                     {{ $friend->name }}
                 </h3>
                 <h5 class="fw-bolder text-secondary fs-6 mt-3">
-                    @if ($friendParticipants->chats)
-                    @else
+                    @if ($chats->isEmpty())
                         {{ $room->date_created }}
+                    @else
+                        {{ $chats->last()->date_created }}
                     @endif
                 </h5>
             </div>
             <h5 class="fw-bolder text-secondary fs-6" style="margin-top: -1rem">
-                @if ($friendParticipants->chats)
-                @else
+                @if ($chats->isEmpty())
                     {{ $room->time_created }}
+                @else
+                    {{ $chats->last()->time_created }}
                 @endif
             </h5>
             <p class="mt-5">
-                @if ($friendParticipants->chats)
-                @else
+                @if ($chats->isEmpty())
                     <h4 class="fs-5 fw-bold">
                         Start chatting with your friend!
                     </h4>
+                @else
+                    {{ $chats->last()->message }}
                 @endif
             </p>
         </div>

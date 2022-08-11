@@ -8,7 +8,7 @@
             @php
                 $friend = $participant->room->participants->where('user_id', '<>', auth()->user()->id)->first()->user;
             @endphp
-            <x-chat-card :friend="$friend" :room="$participant->room"></x-chat-card>
+            <x-chat-card :friend="$friend" :room="$participant->room" :chats="$participant->room->chats"></x-chat-card>
         @empty
             <h3 class="fw-bold text-secondary text-center">YOU ARE CURRENTLY HAVE NO FRIEND :/</h3>
         @endforelse
