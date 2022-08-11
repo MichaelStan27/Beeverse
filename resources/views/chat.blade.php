@@ -32,22 +32,6 @@
                                     </div>
                                 </li>
                             @endforeach
-                            {{-- <li class="in">
-                                <div class="chat-body">
-                                    <div class="chat-message">
-                                        <p>Raw denim heard of them tofu master cleanse</p>
-                                        <small class="time">{{ $room->time_created }}</small>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="out">
-                                <div class="chat-body">
-                                    <div class="chat-message">
-                                        <p>Next level veard</p>
-                                        <small class="time">{{ $room->time_created }}</small>
-                                    </div>
-                                </div>
-                            </li> --}}
                         </ul>
                     </div>
                     <form action="{{ route('chat', ['user' => $friend, 'room' => $room]) }}" method="post">
@@ -100,6 +84,7 @@
         line-height: 20px;
         margin: 0;
         padding: 0;
+        text-align: justify;
     }
 
     .chat-list .chat-body {

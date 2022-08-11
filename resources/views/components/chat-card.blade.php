@@ -31,7 +31,9 @@
                         Start chatting with your friend!
                     </h4>
                 @else
-                    {{ $chats->last()->message }}
+                    <p class="fs-5 text-secondary">
+                        {{ Str::limit($chats->last()->message, 300, $end = '...') }}
+                    </p>
                 @endif
             </p>
         </div>
