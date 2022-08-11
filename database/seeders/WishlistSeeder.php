@@ -29,25 +29,13 @@ class WishlistSeeder extends Seeder
             ],
             [
                 'user_id' => 3,
-                'user_id_wishlisted' => 5,
+                'user_id_wishlisted' => 6,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 1,
-                'user_id_wishlisted' => 2,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'user_id' => 1,
-                'user_id_wishlisted' => 7,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'user_id' => 1,
-                'user_id_wishlisted' => 8,
+                'user_id_wishlisted' => 3,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
