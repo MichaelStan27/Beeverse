@@ -78,4 +78,6 @@ Route::controller(DashboardController::class)->group(function () {
 
 Route::controller(ProfileController::class)->group(function () {
     Route::get('/{user}/profile', 'index')->name('profile');
+    Route::post('/{user}/profile/tabfollowing', 'tabFollowing')->name('tab_following');
+    Route::post('/{user}/profile/tabfollowers', 'tabFollowers')->name('tab_followers');
 });

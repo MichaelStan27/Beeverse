@@ -11,8 +11,9 @@ class ProfileController extends Controller
     public function index(User $user)
     {
         return view('profile', [
-            'user' => User::with(['collections', 'collections.avatar', 'transactions', 'transactions.avatar', 'receives', 'headerHobbies', 'headerHobbies.hobby', 'wishlists'])->where('id', $user->id)->first(),
+            'user' => User::with(['collections', 'collections.avatar', 'transactions', 'transactions.avatar', 'receives', 'headerHobbies', 'headerHobbies.hobby', 'wishlists', 'wishlists.user_wishlist'])->where('id', $user->id)->first(),
             'followers' => Wishlist::with('user_wishlist')->where('user_id_wishlisted', '=', $user->id)->get(),
+            'tabFollowing' => false
         ]);
     }
 
@@ -109,5 +110,24 @@ class ProfileController extends Controller
         $friend->delete();
 
         return redirect()->back()->with('message', "$user->name is removed from your wishlist(s)");
+    }
+
+    public function tabFollowing(User $user)
+    {
+        return view('profile', [
+            'user' => User::with(['collections', 'collections.avatar', 'transactions', 'transactions.avatar', 'receives', 'headerHobbies', 'headerHobbies.hobby', 'wishlists', 'wishlists.user_wishlist'])->where('id', $user->id)->first(),
+            'followers' => Wishlist::with('user_wishlist')->where('user_id_wishlisted', '=', $user->id)->get(),
+            'tabFollowing' => true,
+            'tabs' => true,
+        ]);
+    }
+    public function tabFollowers(User $user)
+    {
+        return view('profile', [
+            'user' => User::with(['collections', 'collections.avatar', 'transactions', 'transactions.avatar', 'receives', 'headerHobbies', 'headerHobbies.hobby', 'wishlists', 'wishlists.user_wishlist'])->where('id', $user->id)->first(),
+            'followers' => Wishlist::with('user_wishlist')->where('user_id_wishlisted', '=', $user->id)->get(),
+            'tabFollowing' => false,
+            'tabs' => true,
+        ]);
     }
 }

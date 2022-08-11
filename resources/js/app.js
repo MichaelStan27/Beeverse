@@ -18,6 +18,8 @@ const topup = document.querySelector("#topup") ?? false;
 const clickBtn = document.querySelector("#clickBtn") ?? false;
 const setting = document.querySelector("#setting") ?? false;
 const settingBtn = document.querySelector("#settingBtn") ?? false;
+const wishlists = document.querySelector("#wishlists") ?? false;
+const wishlistBtn = document.querySelector("#wishlistBtn") ?? false;
 const confirm_hidden_card = document.querySelector("#confirm_hidden_card") ?? false;
 const confirm_visible_card = document.querySelector("#confirm_visible_card") ?? false;
 
@@ -62,6 +64,9 @@ if(collectionBtn){
             setting.style.display = 'none';
             settingBtn.style.backgroundColor = 'white';
             settingBtn.style.color = 'black';
+            wishlists.style.display = 'none';
+            wishlistBtn.style.backgroundColor = 'white';
+            wishlistBtn.style.color = 'black';
         }
     };
 }
@@ -83,6 +88,9 @@ if(topupBtn){
             setting.style.display = 'none';
             settingBtn.style.backgroundColor = 'white';
             settingBtn.style.color = 'black';
+            wishlists.style.display = 'none';
+            wishlistBtn.style.backgroundColor = 'white';
+            wishlistBtn.style.color = 'black';
         }
     };
 }
@@ -104,8 +112,35 @@ if(settingBtn){
             setting.style.display = 'block';
             settingBtn.style.backgroundColor = 'black';
             settingBtn.style.color = 'white';
+            wishlists.style.display = 'none';
+            wishlistBtn.style.backgroundColor = 'white';
+            wishlistBtn.style.color = 'black';
         }
     };
+}
+
+if(wishlistBtn){
+    wishlistBtn.onclick = function (){
+        if(wishlists.style.display === 'block'){
+            wishlists.style.display = 'none';
+            wishlistBtn.style.backgroundColor = 'white';
+            wishlistBtn.style.color = 'black';
+        }
+        else{
+            topup.style.display = 'none';
+            topupBtn.style.backgroundColor = 'white';
+            topupBtn.style.color = 'black';
+            collections.style.display = 'none';
+            collectionBtn.style.backgroundColor = 'transparent';
+            collectionBtn.style.color = 'black';
+            setting.style.display = 'none';
+            settingBtn.style.backgroundColor = 'white';
+            settingBtn.style.color = 'black';
+            wishlists.style.display = 'block';
+            wishlistBtn.style.backgroundColor = 'black';
+            wishlistBtn.style.color = 'white';
+        }
+    }
 }
 
 if (confirm_hidden_card){

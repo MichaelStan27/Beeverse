@@ -100,16 +100,14 @@ $number = 1;
                                 </a>
                             </div>
                             <div class="border-bottom fw-bold">
+                                <a href="#" class="btn w-100 py-4 fw-bold" id="wishlistBtn"
+                                    @if ($tabs) style="background-color: black; color: white;" @endif>WISHLISTS</a>
+                            </div>
+                            <div class="border-bottom fw-bold">
                                 <a href="#" class="btn w-100 py-4 fw-bold" id="settingBtn"
                                     @if (Session::has('visibleSess')) style="background-color: black; color: white;" @endif>
                                     SETTINGS
                                 </a>
-                            </div>
-                            <div class="border-bottom fw-bold">
-                                <form action="{{ route('logout') }}" method="post">
-                                    @csrf
-                                    <button type="submit" class="btn w-100 py-4 fw-bold">LOGOUT</button>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -208,6 +206,49 @@ $number = 1;
                                             <i class="fa-solid fa-eye pb-3 fa-xl text-secondary"></i>
                                         </button>
                                     </form>
+                                </div>
+                            @endif
+                        </div>
+                        {{-- WISHLIST SECTION --}}
+                        <div class="col-sm-8 border shadow-sm rounded-3 mt-3 bg-dark text-light py-3 px-4"
+                            style="@if (isset($tabs)) display: block @else display: none @endif"
+                            id="wishlists">
+                            <h3 class="fw-bold">WISHLISTS</h3>
+                            <div class="d-flex px-2 justify-content-evenly mb-4">
+                                <form action="{{ route('tab_followers', auth()->user()) }}" method="post">
+                                    @csrf
+                                    <button type="submit"
+                                        class="@if (!$tabFollowing) active @endif btn btn-dark fw-bold fs-4 border-light"
+                                        style="padding-inline: 10rem" id="tabfollowers">Followers</button>
+                                </form>
+                                <form action="{{ route('tab_following', auth()->user()) }}" method="post">
+                                    @csrf
+                                    <button type="submit"
+                                        class=" @if ($tabFollowing) active @endif btn btn-dark fw-bold fs-4 border-light"
+                                        style="padding-inline: 10rem" id="tabfollowing">Following</button>
+                                </form>
+                            </div>
+                            @if ($tabFollowing)
+                                <div class="overflow-auto px-2" style="max-height: 30rem">
+                                    @forelse ($user->wishlists as $following)
+                                        <x-user-card :user="$following->user_wishlist" :collections="$following->user_wishlist->collections"></x-user-card>
+                                    @empty
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <h3 class="">You haven't follow any user yet</h3>
+                                            <i class="fa-solid fa-heart-crack fa-xl pt-3"></i>
+                                        </div>
+                                    @endforelse
+                                </div>
+                            @else
+                                <div class="overflow-auto px-2" style="max-height: 30rem">
+                                    @forelse ($followers as $follower)
+                                        <x-user-card :user="$follower->user" :collections="$follower->user->collections"></x-user-card>
+                                    @empty
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <h3 class="">You haven't been followed by any user yet</h3>
+                                            <i class="fa-solid fa-heart-crack fa-xl pt-3"></i>
+                                        </div>
+                                    @endforelse
                                 </div>
                             @endif
                         </div>
