@@ -73,7 +73,9 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::controller(ChatController::class)->group(function () {
-            Route::get('/chat', 'index')->name('list_chat');
+            Route::get('/chats', 'index')->name('list_chat');
+            Route::get('/chat/{user}/{room}', 'viewChat')->name('chat');
+            Route::post('/chat/{user}/{room}', 'sendChat');
         });
     });
 });

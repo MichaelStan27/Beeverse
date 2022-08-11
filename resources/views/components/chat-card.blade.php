@@ -4,7 +4,7 @@
 $friendParticipants = $friend->participants->where('room_id', '=', $room->id)->first();
 @endphp
 
-<a href="" class="text-dark hover" style="text-decoration: none">
+<a href="{{ route('chat', ['user' => $friend, 'room' => $room]) }}" class="text-dark hover" style="text-decoration: none">
     <div class="d-flex w-100 border rounded-2 shadow-sm mx-auto mb-3 row">
         <div class="col-sm-2 py-3" style="padding-left: 3rem">
             <img src="{{ asset('assets/avatars') }}/{{ $friend->photo_profile }}" style="width: 10rem">
