@@ -143,6 +143,25 @@ if(wishlistBtn){
     }
 }
 
+const tabfollowers = document.querySelector("#tabfollowers") ?? false;
+const followerCard = document.querySelector("#followerCard") ?? false;
+const tabfollowing = document.querySelector("#tabfollowing") ?? false;
+const followingCard = document.querySelector("#followingCard") ?? false;
+
+if (tabfollowers){
+    tabfollowers.onclick = function (){
+        followerCard.style.display = "block"
+        followingCard.style.display = "none"
+    }
+}
+
+if (tabfollowing){
+    tabfollowing.onclick = function (){
+        followingCard.style.display = "block"
+        followerCard.style.display = "none"
+    }
+}
+
 if (confirm_hidden_card){
     xBtn.onclick = function (){
         confirm_hidden_card.style.display = "none";

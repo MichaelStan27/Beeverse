@@ -108,7 +108,7 @@ $number = 1;
                             </div>
                             <div class="border-bottom fw-bold">
                                 <a href="#" class="btn w-100 py-4 fw-bold" id="wishlistBtn"
-                                    @if (isset($tabs)) style="background-color: black; color: white;" @endif>WISHLISTS</a>
+                                    @if (Session::has('ingSes') || Session::has('ersSes')) style="background-color: black; color: white;" @endif>WISHLISTS</a>
                             </div>
                             <div class="border-bottom fw-bold">
                                 <a href="#" class="btn w-100 py-4 fw-bold" id="settingBtn"
@@ -218,25 +218,25 @@ $number = 1;
                         </div>
                         {{-- WISHLIST SECTION --}}
                         <div class="col-sm-8 border shadow-sm rounded-3 mt-3 bg-dark text-light py-3 px-4"
-                            style="@if (isset($tabs)) display: block @else display: none @endif"
+                            style="@if (Session::has('ingSes') || Session::has('ersSes')) display: block @else display: none @endif"
                             id="wishlists">
                             <h3 class="fw-bold">WISHLISTS</h3>
                             <div class="d-flex px-2 justify-content-evenly mb-4">
                                 <form action="{{ route('tab_followers', auth()->user()) }}" method="post">
                                     @csrf
                                     <button type="submit"
-                                        class="@if (!$tabFollowing) active @endif btn btn-dark fw-bold fs-4 border-light"
+                                        class="@if (Session::has('ersSes')) active @endif btn btn-dark fw-bold fs-4 border-light"
                                         style="padding-inline: 10rem" id="tabfollowers">Followers</button>
                                 </form>
                                 <form action="{{ route('tab_following', auth()->user()) }}" method="post">
                                     @csrf
                                     <button type="submit"
-                                        class=" @if ($tabFollowing) active @endif btn btn-dark fw-bold fs-4 border-light"
+                                        class=" @if (Session::has('ingSes')) active @endif btn btn-dark fw-bold fs-4 border-light"
                                         style="padding-inline: 10rem" id="tabfollowing">Following</button>
                                 </form>
                             </div>
-                            @if ($tabFollowing)
-                                <div class="overflow-auto px-2" style="max-height: 30rem">
+                            @if (Session::has('ingSes'))
+                                <div class="overflow-auto px-2" style="max-height: 30rem" id="followingCard">
                                     @forelse ($user->wishlists as $following)
                                         <x-user-card :user="$following->user_wishlist" :collections="$following->user_wishlist->collections"></x-user-card>
                                     @empty
@@ -246,8 +246,8 @@ $number = 1;
                                         </div>
                                     @endforelse
                                 </div>
-                            @else
-                                <div class="overflow-auto px-2" style="max-height: 30rem">
+                            @elseif (Session::has('ersSes'))
+                                <div class="overflow-auto px-2" style="max-height: 30rem" id="followerCard">
                                     @forelse ($followers as $follower)
                                         <x-user-card :user="$follower->user" :collections="$follower->user->collections"></x-user-card>
                                     @empty
