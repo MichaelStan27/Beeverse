@@ -18,10 +18,12 @@ class DatabaseSeeder extends Seeder
             HobbySeeder::class,
             UserSeeder::class,
             CollectionSeeder::class,
+            RoomSeeder::class,
             ChatSeeder::class,
             WishlistSeeder::class,
             HeaderHobbySeeder::class,
             TransactionSeeder::class,
+            ParticipantSeeder::class,
         ]);
     }
 }
