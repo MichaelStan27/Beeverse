@@ -11,7 +11,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 @auth
                     <ul class="navbar-nav">
-                        <li class="nav-item dropdown position-absolute fw-bold" style="right: 6rem; top: 2rem;">
+                        <li class="nav-item dropdown position-absolute fw-bold" style="right: 7rem; top: 2rem;">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 {{ auth()->user()->name }}
@@ -43,6 +43,7 @@
                                             <a class="dropdown-item text-center"
                                                 href="{{ route('profile', auth()->user()) }}">Profile</a>
                                         @endif
+                                        <a class="dropdown-item text-center" href="{{ route('list_chat') }}">Chat</a>
                                     </li>
                                 @endcan
                                 <form action="{{ route('logout') }}" method="post">
@@ -67,7 +68,7 @@
                 @endauth
 
                 @guest
-                    <li class="nav-item dropdown position-absolute fw-bold" style="right: 6rem; top:2rem">
+                    <li class="nav-item dropdown position-absolute fw-bold" style="right: 7rem; top:2rem">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Guest
