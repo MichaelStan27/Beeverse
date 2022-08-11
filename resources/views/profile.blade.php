@@ -21,6 +21,13 @@ $number = 1;
                                         style="width: 12rem">
                                     <h2 class="fw-bold mt-2">{{ $user->name }}</h2>
                                     <h3 class="fs-4 fw-bold" style="color: gray">{{ $user->gender }}</h3>
+                                    <a href="https://www.instagram.com/{{ $user->ig_username }}" class="text-dark"
+                                        style="text-decoration: none;">
+                                        <div class="d-flex gap-2 justify-content-center align-items-center">
+                                            <i class="fa-brands fa-instagram fa-lg pb-3 fw-bold"></i>
+                                            <p class="text-secondary fs-5 fw-bold">{{ $user->ig_username }}</p>
+                                        </div>
+                                    </a>
                                 </div>
                                 <div class="">
                                     <div class="d-flex gap-4 fw-bold mb-3 mt-2">
@@ -101,7 +108,7 @@ $number = 1;
                             </div>
                             <div class="border-bottom fw-bold">
                                 <a href="#" class="btn w-100 py-4 fw-bold" id="wishlistBtn"
-                                    @if ($tabs) style="background-color: black; color: white;" @endif>WISHLISTS</a>
+                                    @if (isset($tabs)) style="background-color: black; color: white;" @endif>WISHLISTS</a>
                             </div>
                             <div class="border-bottom fw-bold">
                                 <a href="#" class="btn w-100 py-4 fw-bold" id="settingBtn"
@@ -267,6 +274,13 @@ $number = 1;
                                     class="card-img-top mt-3" style="width: 12rem">
                                 <h2 class="fw-bold mt-2">{{ $user->name }}</h2>
                                 <h3 class="fs-4 fw-bold" style="color: gray">{{ $user->gender }}</h3>
+                                <a href="https://www.instagram.com/{{ $user->ig_username }}" class="text-dark"
+                                    style="text-decoration: none;">
+                                    <div class="d-flex gap-2 justify-content-center align-items-center">
+                                        <i class="fa-brands fa-instagram fa-lg pb-3 fw-bold"></i>
+                                        <p class="text-secondary fs-5 fw-bold">{{ $user->ig_username }}</p>
+                                    </div>
+                                </a>
                             </div>
                             <div class="">
                                 <div class="">

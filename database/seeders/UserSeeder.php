@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     {
         User::insert([
             [
-                'ig_username' => 'cicil',
+                'ig_username' => 'ciciliamargo',
                 'name' => 'Cicil',
                 'photo_profile' => 'horse.png',
                 'gender' => 'Female',
@@ -62,7 +62,7 @@ class UserSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'ig_username' => 'michellepauline',
+                'ig_username' => 'michellepaulinn',
                 'name' => 'Michelle Pauline',
                 'photo_profile' => 'man_chill.png',
                 'gender' => 'Female',
@@ -92,7 +92,7 @@ class UserSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'ig_username' => 'pascalwilman',
+                'ig_username' => 'pascalwilman28',
                 'name' => 'Pascal Wilman',
                 'photo_profile' => 'default.png',
                 'gender' => 'Male',
@@ -107,7 +107,7 @@ class UserSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'ig_username' => 'lusia',
+                'ig_username' => 'lusiakk_',
                 'name' => 'Lusia',
                 'photo_profile' => 'dragon.png',
                 'gender' => 'Female',
@@ -122,7 +122,7 @@ class UserSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'ig_username' => 'exy',
+                'ig_username' => 'exaudinaglo',
                 'name' => 'Exaudina',
                 'photo_profile' => 'anaconda.png',
                 'gender' => 'Female',
