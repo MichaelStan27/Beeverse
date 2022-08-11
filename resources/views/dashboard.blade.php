@@ -16,7 +16,7 @@
                                 @continue
                             @endif
                         @endauth
-                        <x-user-card :user="$user"></x-user-card>
+                        <x-user-card :user="$user" :collections="$user->collections"></x-user-card>
                     @empty
                         <h3 class="text-center fw-bold text-secondary" style="margin-top: 12rem">NO USER FOUND</h3>
                     @endforelse

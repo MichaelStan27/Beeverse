@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Hobby;
 use App\Models\User;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -16,7 +17,7 @@ class DashboardController extends Controller
         }
         return view('dashboard', [
             'hobbies' => Hobby::all(),
-            'users' => User::with(['headerHobbies', 'headerHobbies.hobby'])->where('hidden', false)->paginate(5),
+            'users' => User::with(['headerHobbies', 'headerHobbies.hobby', 'collections', 'collections.avatar'])->where('hidden', false)->paginate(5),
         ]);
     }
 
@@ -25,7 +26,7 @@ class DashboardController extends Controller
         $user = auth()->user();
 
         // Base Query
-        $query = User::with(['headerHobbies', 'headerHobbies.hobby'])
+        $query = User::with(['headerHobbies', 'headerHobbies.hobby', 'collections', 'collections.avatar'])
             ->join('header_hobbies', 'users.id', '=', 'header_hobbies.user_id')
             ->join('hobbies', 'header_hobbies.hobby_id', '=', 'hobbies.id');
 
