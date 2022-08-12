@@ -7,6 +7,7 @@ use App\Models\Hobby;
 use App\Models\User;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
@@ -26,22 +27,41 @@ class RegisterController extends Controller
 
     public function validation(Request $request)
     {
-        $request->validate(
-            [
-                'name' => ['required', 'min:5'],
-                'gender' => ['required'],
-                'hobbies' => ['required', 'min:3'],
-                'username' => ['required', 'alpha_dash', 'unique:users,ig_username'],
-                'number' => ['required', 'digits_between:10,12'],
-                'address' => ['required'],
-                'email' => ['required', 'email', 'unique:users,email'],
-                'password' => ['required', Password::min(5)->letters()->numbers(), 'confirmed'],
-                'password_confirmation' => ['required', Password::min(5)->letters()->numbers()]
-            ],
-            [
-                'hobbies.min' => 'You must select your hobbies with minimum 3 hobbies'
-            ],
-        );
+        if (App::isLocale('en')) {
+            $request->validate(
+                [
+                    'name' => ['required', 'min:5'],
+                    'gender' => ['required'],
+                    'hobbies' => ['required', 'min:3'],
+                    'username' => ['required', 'alpha_dash', 'unique:users,ig_username'],
+                    'number' => ['required', 'digits_between:10,12'],
+                    'address' => ['required'],
+                    'email' => ['required', 'email', 'unique:users,email'],
+                    'password' => ['required', Password::min(5)->letters()->numbers(), 'confirmed'],
+                    'password_confirmation' => ['required', Password::min(5)->letters()->numbers()]
+                ],
+                [
+                    'hobbies.min' => 'You must select your hobbies with minimum 3 hobbies'
+                ],
+            );
+        } else {
+            $request->validate(
+                [
+                    'name' => ['required', 'min:5'],
+                    'gender' => ['required'],
+                    'hobbies' => ['required', 'min:3'],
+                    'username' => ['required', 'alpha_dash', 'unique:users,ig_username'],
+                    'number' => ['required', 'digits_between:10,12'],
+                    'address' => ['required'],
+                    'email' => ['required', 'email', 'unique:users,email'],
+                    'password' => ['required', Password::min(5), 'confirmed'],
+                    'password_confirmation' => ['required', Password::min(5)]
+                ],
+                [
+                    'hobbies.min' => 'Anda harus memilih hobi minimal 3'
+                ],
+            );
+        }
 
         $user = User::create([
             'name' => $request->name,

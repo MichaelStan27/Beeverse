@@ -56,7 +56,7 @@ class LoginController extends Controller
     {
         $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required', Password::min(5)->letters()->numbers()]
+            'password' => ['required', Password::min(5)]
         ]);
 
         if (Auth::attempt($request->only('email', 'password'), $request->remember)) {

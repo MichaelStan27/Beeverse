@@ -27,9 +27,9 @@ if (Session::has('data')) {
             <div class="mb-3">
                 <select class="form-control @error('gender') is-invalid @enderror" id="gender" name="gender">
                     <option value="" selected disabled>{{ __('Select Your Gender') }}</option>
-                    <option @if ((isset($data) && $data['gender'] == 'Male') || old('gender') == 'Male') selected @endif>
+                    <option @if ((isset($data) && $data['gender'] == 'Male') || old('gender') == 'Male') selected @endif value="Male">
                         {{ __('Male') }}</option>
-                    <option @if ((isset($data) && $data['gender'] == 'Female') || old('gender') == 'Female') selected @endif>{{ __('Female') }}</option>
+                    <option @if ((isset($data) && $data['gender'] == 'Female') || old('gender') == 'Female') selected @endif value="Female">{{ __('Female') }}</option>
                 </select>
                 @error('gender')
                     <p class="text-danger">{{ $message }}</p>
