@@ -18,7 +18,7 @@
                                 <img src="{{ asset('assets/avatars') }}/{{ $collection->avatar->image }}"
                                     style="width: 4rem">
                             @empty
-                                <h5 class="text-secondary border w-100">{{ $user->name }}'s collection
+                                <h5 class="text-secondary w-100">{{ $user->name }}'s collection
                                     is empty
                                 </h5>
                             @endforelse
