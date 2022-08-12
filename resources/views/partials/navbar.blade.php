@@ -66,7 +66,6 @@
                         @endif
                     </ul>
                 @endauth
-
                 @guest
                     <li class="nav-item dropdown position-absolute fw-bold" style="right: 7rem; top:2rem">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -79,6 +78,43 @@
                         </ul>
                     </li>
                 @endguest
+                {{-- LOCALE --}}
+                <li class="nav-item dropdown" style="margin-left: 2rem">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        @if (App::isLocale('en'))
+                            <img src="{{ asset('assets/locale/en.png') }}" class="" style="width: 2rem">
+                        @else
+                            <img src="{{ asset('assets/locale/id.png') }}" class="" style="width: 2rem">
+                        @endif
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                @if (App::isLocale('en'))
+                                    <form action="{{ route('change_lang', 'id') }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn border-0">
+                                            <img src="{{ asset('assets/locale/id.png') }}" class=""
+                                                style="width: 2rem">
+                                            <h5 class="d-inline fw-bold">Indonesia</h5>
+                                        </button>
+                                    </form>
+                                @else
+                                    <form action="{{ route('change_lang', 'en') }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn border-0">
+                                            <img src="{{ asset('assets/locale/en.png') }}" class=""
+                                                style="width: 2rem">
+                                            <h5 class="d-inline fw-bold">English</h5>
+                                        </button>
+                                    </form>
+                                @endif
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
