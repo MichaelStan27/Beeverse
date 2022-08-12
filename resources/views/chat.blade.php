@@ -1,6 +1,6 @@
 @extends('layout.main')
 
-@section('title', 'Chat')
+@section('title', __('Chat'))
 
 @section('content')
     <div class="container" style="margin-top: 1.5rem">

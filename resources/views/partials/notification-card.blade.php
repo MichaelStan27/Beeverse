@@ -2,16 +2,22 @@
     <div class="fixed-top w-25 mt-5" style="margin-left: 41rem">
         <div class="card text-bg-dark" style="width: 18rem;" id="confirmation-card">
             <div class="card-body">
-                <h5 class="card-title text-danger fw-bold w-100 text-center fs-3 mb-4">CONFIRMATION</h5>
-                <h6 class="card-subtitle mb-2 text-light text-center">Sorry you are overpaid IDR
-                    {{ number_format(session('amount')) }}
+                <h5 class="card-title text-danger fw-bold w-100 text-center fs-3 mb-4">{{ __('CONFIRMATION') }}</h5>
+                <h6 class="card-subtitle mb-2 text-light text-center">{{ __('Sorry you are overpaid') }}
+                    {{ __('IDR') }}
+                    @if (App::isLocale('en'))
+                        {{ number_format(session('amount')) }}
+                    @else
+                        {{ number_format(session('amount'), 0, null, '.') }}
+                    @endif
                 </h6>
-                <p class="card-text text-center">Would you like to enter the balance?</p>
+                <p class="card-text text-center">{{ __('Would you like to enter the balance?') }}</p>
                 <form action="{{ route('convert', auth()->user()) }}" method="post">
                     @csrf
                     <input type="hidden" name="converted" value="{{ session('amount') }}">
-                    <button type="submit" class="btn btn-success w-100 mb-3" id="yesBtn">Yes</button>
-                    <a href="#fee" class="btn btn-danger w-100" id="noBtn">No</a>
+                    <button type="submit" class="btn btn-success w-100 mb-3"
+                        id="yesBtn">{{ __('Yes') }}</button>
+                    <a href="#fee" class="btn btn-danger w-100" id="noBtn">{{ __('No') }}</a>
                 </form>
             </div>
         </div>
@@ -20,9 +26,14 @@
     <div class="fixed-top w-25 mt-5" style="margin-left: 41rem">
         <div class="card text-bg-dark" style="width: 18rem;" id="notif-card">
             <div class="card-body">
-                <h5 class="card-title text-danger fw-bold w-100 text-center">ERROR</h5>
-                <h6 class="card-subtitle mb-2 text-light text-center">Sorry you are underpaid IDR
-                    {{ number_format(session('amount_underpaid')) }}
+                <h5 class="card-title text-danger fw-bold w-100 text-center">{{ __('ERROR') }}</h5>
+                <h6 class="card-subtitle mb-2 text-light text-center">{{ __('Sorry you are underpaid') }}
+                    {{ __('IDR') }}
+                    @if (App::isLocale('en'))
+                        {{ number_format(session('amount_underpaid')) }}
+                    @else
+                        {{ number_format(session('amount_underpaid'), 0, null, '.') }}
+                    @endif
                 </h6>
             </div>
         </div>
@@ -31,7 +42,7 @@
     <div class="fixed-top w-25 mt-5" style="margin-left: 41rem">
         <div class="card" style="width: 18rem;" id="notif-card">
             <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-dark text-center mt-2">{{ session('message') }}
+                <h6 class="card-subtitle mb-2 text-dark text-center mt-2">{{ __(session('message')) }}
                 </h6>
             </div>
         </div>
@@ -58,10 +69,12 @@
                         <i class="fa-solid fa-x"></i>
                     </a>
                 </div>
-                <h5 class="card-title text-light fw-bold w-100 text-center fs-3">Buy / Send</h5>
-                <p class="card-text text-center">What do you want to do with this avatar?</p>
+                <h5 class="card-title text-light fw-bold w-100 text-center fs-3">{{ __('Buy') }} /
+                    {{ __('Send') }}</h5>
+                <p class="card-text text-center">{{ __('What do you want to do with this avatar?') }}</p>
                 @if ($collections->contains('avatar_id', $avatar->id))
-                    <p class="card-text text-center text-success fw-bold">(you already have this avatar)</p>
+                    <p class="card-text text-center text-success fw-bold">({{ __('you already have this avatar') }})
+                    </p>
                 @endif
                 <div class="text-center d-flex align-items-center justify-content-center mb-4">
                     <img src="{{ asset('assets/avatars') }}/{{ $avatar->image }}" style="width: 8rem;">
@@ -69,10 +82,10 @@
                 <form action="{{ route('confirm', $avatar) }}" method="post">
                     @csrf
                     <button type="submit" class="btn btn-outline-light w-100 mb-2" id="buyBtn"
-                        @if ($collections->contains('avatar_id', $avatar->id)) disabled @endif>Buy</button>
+                        @if ($collections->contains('avatar_id', $avatar->id)) disabled @endif>{{ __('Buy') }}</button>
                 </form>
                 <a href="{{ route('check_send', $avatar) }}" class="btn btn-outline-light w-100 mb-2"
-                    id="sendBtn">Send</a>
+                    id="sendBtn">{{ __('Send') }}</a>
             </div>
         </div>
     </div>
@@ -98,12 +111,12 @@
                         <i class="fa-solid fa-x"></i>
                     </a>
                 </div>
-                <h5 class="card-title text-light fw-bold w-100 text-center fs-3">Buy</h5>
-                <p class="card-text text-center">Are you sure you want to buy this avatar for
+                <h5 class="card-title text-light fw-bold w-100 text-center fs-3">{{ __('Buy') }}</h5>
+                <p class="card-text text-center">{{ __('Are you sure you want to buy this avatar for') }}
                     <i class="fa-solid fa-coins"></i>
                     {{ $avatar->price_format }}?
                 </p>
-                <p class="card-text text-center">(Your balance is:
+                <p class="card-text text-center">({{ __('Your balance is:') }}
                     @if ($auth_user->balance >= $avatar->price)
                         <i class="fa-solid fa-coins text-success"></i>
                         <span class="text-success fw-bold"> {{ $auth_user->balance_format }}</span>
@@ -123,9 +136,9 @@
                     <input type="hidden" name="avatar_name" value="{{ $avatar->name }}">
                     <input type="hidden" name="new_balance" value="{{ $auth_user->balance - $avatar->price }}">
                     <button type="submit" class="btn btn-outline-light w-100 mb-2" id="buyBtn"
-                        @if ($auth_user->balance < $avatar->price) disabled @endif>Yes</button>
+                        @if ($auth_user->balance < $avatar->price) disabled @endif>{{ __('Yes') }}</button>
                 </form>
-                <a href="#" class="btn btn-outline-light w-100 mb-2" id="sendBtn">No</a>
+                <a href="#" class="btn btn-outline-light w-100 mb-2" id="sendBtn">{{ __('No') }}</a>
             </div>
         </div>
     </div>
@@ -153,15 +166,15 @@
                 </div>
                 <form action="{{ route('send_avatar', $auth_user) }}" method="post">
                     @csrf
-                    <h5 class="card-title text-light fw-bold w-100 text-center fs-3">Send</h5>
+                    <h5 class="card-title text-light fw-bold w-100 text-center fs-3">{{ __('Send') }}</h5>
                     <div class="d-flex justify-content-center gap-2 mb-3">
                         <i class="fa-solid fa-coins py-1"></i>
                         <p class="card-text text-center">{{ $avatar->price_format }}</p>
                     </div>
                     @if ($auth_user->balance >= $avatar->price)
-                        <p class="card-text text-center">Who do you want to send this avatar for?</p>
+                        <p class="card-text text-center">{{ __('Who do you want to send this avatar for?') }}</p>
                         <select class="form-select mb-4" aria-label="Select User" name="sended_user">
-                            <option selected disabled>Select Users</option>
+                            <option selected disabled>{{ __('Select Users') }}</option>
                             @foreach ($users as $user)
                                 @if ($user->collections->contains('avatar_id', $avatar->id))
                                     @continue
@@ -170,9 +183,9 @@
                             @endforeach
                         </select>
                     @else
-                        <p class="card-text text-center text-danger fw-bold">Insufficient Balance</p>
+                        <p class="card-text text-center text-danger fw-bold">{{ __('Insufficient Balance') }}</p>
                     @endif
-                    <p class="card-text text-center">(Your balance is:
+                    <p class="card-text text-center">({{ __('Your balance is:') }}
                         @if ($auth_user->balance > $avatar->price)
                             <i class="fa-solid fa-coins text-success"></i>
                             <span class="text-success fw-bold"> {{ $auth_user->balance_format }}</span>
@@ -190,7 +203,7 @@
                     <input type="hidden" name="avatar_name" value="{{ $avatar->name }}">
                     <input type="hidden" name="new_balance" value="{{ $auth_user->balance - $avatar->price }}">
                     <button type="submit" class="btn btn-outline-light w-100 mb-2" id="sendBtn"
-                        @if ($auth_user->balance < $avatar->price) disabled @endif>Send</button>
+                        @if ($auth_user->balance < $avatar->price) disabled @endif>{{ __('Send') }}</button>
                 </form>
             </div>
         </div>
@@ -216,12 +229,12 @@
                         <i class="fa-solid fa-x"></i>
                     </a>
                 </div>
-                <h5 class="card-title text-light fw-bold w-100 text-center fs-3">CONFIRMATION</h5>
-                <p class="card-text text-center">Are you sure you want to be hidden by paying
+                <h5 class="card-title text-light fw-bold w-100 text-center fs-3">{{ __('CONFIRMATION') }}</h5>
+                <p class="card-text text-center">{{ __('Are you sure you want to be hidden by paying') }}
                     <i class="fa-solid fa-coins"></i>
                     50?
                 </p>
-                <p class="card-text text-center">(Your balance is:
+                <p class="card-text text-center">({{ __('Your balance is:') }}
                     @if ($auth_user->balance >= 50)
                         <i class="fa-solid fa-coins text-success"></i>
                         <span class="text-success fw-bold"> {{ $auth_user->balance_format }}</span>
@@ -234,9 +247,9 @@
                 <form action="{{ route('make_hidden', $auth_user) }}" method="post">
                     @csrf
                     <button type="submit" class="btn btn-outline-light w-100 mb-2" id="yesBtn"
-                        @if ($auth_user->balance < 50) disabled @endif>Yes</button>
+                        @if ($auth_user->balance < 50) disabled @endif>{{ __('Yes') }}</button>
                 </form>
-                <a href="#" class="btn btn-outline-light w-100 mb-2" id="noBtn">No</a>
+                <a href="#" class="btn btn-outline-light w-100 mb-2" id="noBtn">{{ __('No') }}</a>
             </div>
         </div>
     </div>
@@ -261,12 +274,12 @@
                         <i class="fa-solid fa-x"></i>
                     </a>
                 </div>
-                <h5 class="card-title text-light fw-bold w-100 text-center fs-3">CONFIRMATION</h5>
-                <p class="card-text text-center">Are you sure you want to be visible by paying
+                <h5 class="card-title text-light fw-bold w-100 text-center fs-3">{{ __('CONFIRMATION') }}</h5>
+                <p class="card-text text-center">{{ __('Are you sure you want to be visible by paying') }}
                     <i class="fa-solid fa-coins"></i>
                     5?
                 </p>
-                <p class="card-text text-center">(Your balance is:
+                <p class="card-text text-center">({{ __('Your balance is:') }}
                     @if ($auth_user->balance >= 5)
                         <i class="fa-solid fa-coins text-success"></i>
                         <span class="text-success fw-bold"> {{ $auth_user->balance_format }}</span>
@@ -279,9 +292,9 @@
                 <form action="{{ route('choose_visible', $auth_user) }}" method="post">
                     @csrf
                     <button type="submit" class="btn btn-outline-light w-100 mb-2" id="yesBtn"
-                        @if ($auth_user->balance < 5) disabled @endif>Yes</button>
+                        @if ($auth_user->balance < 5) disabled @endif>{{ __('Yes') }}</button>
                 </form>
-                <a href="#" class="btn btn-outline-light w-100 mb-2" id="noBtn">No</a>
+                <a href="#" class="btn btn-outline-light w-100 mb-2" id="noBtn">{{ __('No') }}</a>
             </div>
         </div>
     </div>
@@ -306,8 +319,8 @@
                         <i class="fa-solid fa-x"></i>
                     </a>
                 </div>
-                <h5 class="card-title text-light fw-bold w-100 text-center fs-3">CHOOSE AVATARS</h5>
-                <p class="card-text text-center">Select which avatar you want to be on your profile
+                <h5 class="card-title text-light fw-bold w-100 text-center fs-3">{{ __('CHOOSE AVATARS') }}</h5>
+                <p class="card-text text-center">{{ __('Select which avatar you want to be on your profile') }}
                 </p>
                 <form
                     action="

@@ -26,11 +26,11 @@
                                                     style="width: 4rem">
                                             </a>
                                             @if (auth()->user()->hidden)
-                                                <p class="text-dark mb-1">hidden</p>
+                                                <p class="text-dark mb-1">{{ __('hidden') }}</p>
                                             @else
-                                                <p class="text-success mb-1">visible</p>
+                                                <p class="text-success mb-1">{{ __('visible') }}</p>
                                             @endif
-                                            <p style="color: gray">Balance: <br>
+                                            <p style="color: gray">{{ __('Balance') }}: <br>
                                                 <span class="text-dark fw-bold">
                                                     <i class="fa-solid fa-coins"></i>
                                                     {{ auth()->user()->balance_format }}
@@ -38,19 +38,21 @@
                                             </p>
                                         </div>
                                         @if (Route::is('profile'))
-                                            <a class="dropdown-item text-center" href="{{ route('dashboard') }}">Dashboard</a>
+                                            <a class="dropdown-item text-center"
+                                                href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
                                         @else
                                             <a class="dropdown-item text-center"
-                                                href="{{ route('profile', auth()->user()) }}">Profile</a>
+                                                href="{{ route('profile', auth()->user()) }}">{{ __('Profile') }}</a>
                                         @endif
-                                        <a class="dropdown-item text-center" href="{{ route('list_chat') }}">Chat</a>
+                                        <a class="dropdown-item text-center"
+                                            href="{{ route('list_chat') }}">{{ __('Chat') }}</a>
                                     </li>
                                 @endcan
                                 <form action="{{ route('logout') }}" method="post">
                                     @csrf
                                     <li>
                                         <button type="submit" class="dropdown-item text-center">
-                                            Log out
+                                            {{ __('Log out') }}
                                         </button>
                                     </li>
                                 </form>
@@ -60,7 +62,7 @@
                             <li class="nav-item position-absolute" style="right: 18rem; top: 2rem;">
                                 @can('see', auth()->user())
                                     <a class="nav-link active" aria-current="page" href="{{ route('shop') }}"><i
-                                            class="fa-solid fa-store fa-xl">SHOP</i></a>
+                                            class="fa-solid fa-store fa-xl">{{ __('SHOP') }}</i></a>
                                 @endcan
                             </li>
                         @endif
@@ -70,11 +72,11 @@
                     <li class="nav-item dropdown position-absolute fw-bold" style="right: 7rem; top:2rem">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Guest
+                            {{ __('Guest') }}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('register') }}">Register</a></li>
-                            <li><a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
+                            <li><a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                         </ul>
                     </li>
                 @endguest

@@ -7,6 +7,7 @@ use App\Models\Room;
 use App\Models\User;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class ProfileController extends Controller
 {
@@ -124,10 +125,15 @@ class ProfileController extends Controller
                     'user_id' => $user->id,
                     'room_id' => $room->id
                 ]);
-
-                return redirect()->back()->with('message', "$user->name is added to your friendlist(s), you can chat with them now!");
+                if (App::isLocale('en')) {
+                    return redirect()->back()->with('message', "$user->name is added to your friendlist(s), you can chat with them now!");
+                }
+                return redirect()->back()->with('message', "$user->name ditambahkan menjadi teman anda, anda bisa mengobrol dengannya sekarang!");
             }
-            return redirect()->back()->with('message', "$user->name is added to your wishlist(s)");
+            if (App::isLocale('en')) {
+                return redirect()->back()->with('message', "$user->name is added to your wishlist(s)");
+            }
+            return redirect()->back()->with('message', "$user->name ditambahkan ke daftar keinginan");
         }
 
         if ($is_added) {
@@ -144,13 +150,17 @@ class ProfileController extends Controller
             }
 
             $wishlist->delete();
-
-            return redirect()->back()->with('message', "$user->name is removed from your friendlist(s), your chat is deleted");
+            if (App::isLocale('en')) {
+                return redirect()->back()->with('message', "$user->name is removed from your friendlist(s), your chat is deleted");
+            }
+            return redirect()->back()->with('message', "$user->name dihapus dari pertemanan anda, obrolan anda dengannya telah dihapus");
         }
 
         $wishlist->delete();
-
-        return redirect()->back()->with('message', "$user->name is removed from your wishlist(s)");
+        if (App::isLocale('en')) {
+            return redirect()->back()->with('message', "$user->name is removed from your wishlist(s)");
+        }
+        return redirect()->back()->with('message', "$user->name dihapus dari daftar keinginan");
     }
 
     public function tabFollowing(User $user)

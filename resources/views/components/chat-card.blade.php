@@ -28,7 +28,7 @@
             <p class="mt-5">
                 @if ($chats->isEmpty())
                     <h4 class="fs-5 fw-bold">
-                        Start chatting with your friend!
+                        {{ __('Start chatting with your friend!') }}
                     </h4>
                 @else
                     <p class="fs-5 text-secondary">

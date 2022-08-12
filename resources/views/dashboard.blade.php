@@ -1,6 +1,6 @@
 @extends('layout.main')
 
-@section('title', 'Dashboard')
+@section('title', __('Dashboard'))
 
 @section('content')
     <div class="flex justify-content-center mx-auto" style="padding: 3rem">
@@ -18,7 +18,8 @@
                         @endauth
                         <x-user-card :user="$user" :collections="$user->collections"></x-user-card>
                     @empty
-                        <h3 class="text-center fw-bold text-secondary" style="margin-top: 12rem">NO USER FOUND</h3>
+                        <h3 class="text-center fw-bold text-secondary" style="margin-top: 12rem">{{ __('NO USER FOUND') }}
+                        </h3>
                     @endforelse
                 </div>
             </div>

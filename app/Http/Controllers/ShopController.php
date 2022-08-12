@@ -7,6 +7,7 @@ use App\Models\Collection;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class ShopController extends Controller
 {
@@ -48,8 +49,10 @@ class ShopController extends Controller
         $user->update([
             'balance' => $request->new_balance,
         ]);
-
-        return redirect()->route('shop')->with('message', $request->avatar_name . " is added to your collection");
+        if (App::isLocale('en')) {
+            return redirect()->route('shop')->with('message', $request->avatar_name . " is added to your collection");
+        }
+        return redirect()->route('shop')->with('message', $request->avatar_name . " ditambahkan ke koleksi anda");
     }
 
     public function send(Request $request, User $user)
@@ -73,6 +76,9 @@ class ShopController extends Controller
             'balance' => $request->new_balance,
         ]);
 
-        return redirect()->route('shop')->with('message', $request->avatar_name . " is added to " . $sended_user->name . "'s collection");
+        if (App::isLocale('en')) {
+            return redirect()->route('shop')->with('message', $request->avatar_name . " is added to " . $sended_user->name . "'s collection");
+        }
+        return redirect()->route('shop')->with('message', $request->avatar_name . " ditambahkan ke koleksi " . $sended_user->name);
     }
 }

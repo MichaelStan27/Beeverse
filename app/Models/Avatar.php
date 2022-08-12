@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 
 class Avatar extends Model
 {
@@ -30,6 +31,9 @@ class Avatar extends Model
 
     public function getPriceFormatAttribute()
     {
-        return number_format($this->attributes['price']);
+        if (App::isLocale('en')) {
+            return number_format($this->attributes['price']);
+        }
+        return number_format($this->attributes['price'], 0, null, '.');
     }
 }

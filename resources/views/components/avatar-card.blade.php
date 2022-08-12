@@ -12,7 +12,7 @@
         <form action="{{ route('check', $avatar) }}" method="post">
             @csrf
             <button type="submit" class="btn btn-dark" style="width: 10rem">
-                BUY
+                {{ __('BUY') }}
             </button>
         </form>
     </div>

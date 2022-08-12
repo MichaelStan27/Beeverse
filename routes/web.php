@@ -71,6 +71,9 @@ Route::middleware('auth')->group(function () {
             Route::post('/change/{user}', 'changeAvatar')->name('change_avatar');
             Route::get('/change/{user}', 'viewError');
             Route::post('/{user}/add', 'addFriend')->name('add_friend');
+            Route::get('/{user}/profile', 'index')->name('profile');
+            Route::post('/{user}/profile/tabfollowing', 'tabFollowing')->name('tab_following');
+            Route::post('/{user}/profile/tabfollowers', 'tabFollowers')->name('tab_followers');
         });
 
         Route::controller(ChatController::class)->group(function () {
@@ -89,10 +92,4 @@ Route::controller(DashboardController::class)->group(function () {
 Route::controller(LanguageController::class)->group(function () {
     Route::post('/changeLang/{lang}', 'changeLang')->name('change_lang');
     Route::get('/changeLang/{lang}', 'viewError');
-});
-
-Route::controller(ProfileController::class)->group(function () {
-    Route::get('/{user}/profile', 'index')->name('profile');
-    Route::post('/{user}/profile/tabfollowing', 'tabFollowing')->name('tab_following');
-    Route::post('/{user}/profile/tabfollowers', 'tabFollowers')->name('tab_followers');
 });

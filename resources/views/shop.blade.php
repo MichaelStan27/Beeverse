@@ -1,10 +1,10 @@
 @extends('layout.main')
 
-@section('title', 'Shop')
+@section('title', __('Shop'))
 
 @section('content')
     <div class="flex justify-content-center mx-auto" style="padding: 3rem">
-        <h1 class="text-center pb-3 fw-bold" style="color: gray">SHOP</h1>
+        <h1 class="text-center pb-3 fw-bold" style="color: gray">{{ __('SHOP') }}</h1>
         <div class="row row-cols-1 row-cols-md-4">
             @foreach ($avatars as $avatar)
                 <div class="col">
