@@ -36,4 +36,11 @@ class Chat extends Model
 
         return $date->format('M d, Y');
     }
+
+    public function getDateCompareAttribute()
+    {
+        $date = $this->created_at;
+
+        return $date->format('Y-m-d');
+    }
 }

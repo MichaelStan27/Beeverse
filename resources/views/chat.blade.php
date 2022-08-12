@@ -27,6 +27,9 @@
                                     <div class="chat-body">
                                         <div class="chat-message">
                                             <p>{{ $chat->message }}</p>
+                                            @if (now()->format('Y-m-d') > $chat->date_compare)
+                                                <small class="time">{{ $chat->date_created }}</small>
+                                            @endif
                                             <small class="time">{{ $chat->time_created }}</small>
                                         </div>
                                     </div>
