@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
@@ -83,6 +84,11 @@ Route::middleware('auth')->group(function () {
 Route::controller(DashboardController::class)->group(function () {
     Route::get('/', 'index')->name('dashboard');
     Route::get('/search', 'search')->name('search');
+});
+
+Route::controller(LanguageController::class)->group(function () {
+    Route::post('/changeLang/{lang}', 'changeLang')->name('change_lang');
+    Route::get('/changeLang/{lang}', 'viewError');
 });
 
 Route::controller(ProfileController::class)->group(function () {
